@@ -1,0 +1,152 @@
+\begin{appendices}
+\section{Cache-aware Optimizations and Details}\label{app:caching}
+
+
+\subsection{Associative caches Implementation and Limitations}\label{subsec:caching}
+Caches are associative memories by design. Formally, they allow storing a subset of key-value pairs from RAM at any given time, represented as:
+$$(\text{addr}_i, \text{RAM}(\text{addr}_i)) \quad \text{for } i = 0, \dots, N \quad where \quad  N << domain(RAM)$$
+A fully associative implementation requires complex, hardware-intensive logic to ensure value retrieval in a very limited number of clock cycles, which is often prohibitive. 
+
+Furthermore, current implementations use \emph{cache lines} to group neighboring addresses under the same key to reduce storage overhead. While a naive approach would allow indexing individual bytes, this method retrieves and stores memory exclusively in full cache lines.
+
+\paragraph{K-associativity}To further limit hardware complexity, modern caches are implemented as \emph{$k$-way set-associative caches}. Instead of allowing a memory line to be placed anywhere, the cache is divided into $S$ distinct sets. Each memory address is mathematically forced to map to exactly one specific set.
+
+We can find a memory address's set index $s$ by taking its block number in RAM and applying a modulo operation:
+$$s = \left\lfloor \frac{\text{addr}}{\text{line\_size}} \right\rfloor \pmod S$$
+
+In this way, the cache acts as a collection of subsets. All memory addresses that compute to the same index $s$ form an equivalence class. While millions of addresses might belong to the same class, the hardware dictates that the cache can only keep a maximum of $k$ elements from that specific class $[s]$ in store at any given time.
+
+\subsubsection{Memory Address Partitioning}
+To determine where a memory address resides in the cache, the $w$-bit memory address (typically 64 bits) is divided into three distinct fields. The sizes of these fields depend on the cache's total capacity ($M$), its associativity ($k$), and the cache line size ($B$):
+
+\begin{itemize}
+    \item \textbf{Offset:} Determines the specific byte inside the cache line. It requires $\log_2(B)$ bits. For a standard 64-byte cache line, this is always $\log_2(64) = 6$ bits.
+    \item \textbf{Set:} Determines which of the $S$ sets (or equivalence classes) the address maps to. The number of sets is calculated as $S = \frac{M}{k \cdot B}$. Thus, the set field requires $\log_2(S)$ bits.
+    \item \textbf{Tag:} Serves as the unique identifier to distinguish between different memory addresses that map to the same set. It uses the remaining most significant bits: $w - (\text{Set} + \text{Offset})$.
+\end{itemize}
+
+Because modern CPUs utilize a hierarchy of caches with varying sizes and associativities, the exact number of bits dedicated to the Set and Tag fields changes at each cache level. Table~\ref{tab:cache_partitioning} summarizes these partitions for the specific hardware detailed in Table~\ref{tab:cpu_specs}.
+
+\begin{table}[H]
+\centering
+\begin{threeparttable}
+\caption{Address partitioning across different cache levels based on the specific CPU topology.}
+\label{tab:cache_partitioning}
+\begin{tabular}{l c c c c c c}
+\hline
+\textbf{Cache Level} & \textbf{Size ($M$)} & \textbf{Assoc. ($k$)} & \textbf{Sets ($S$)} & \textbf{Offset} & \textbf{Set Bits} & \textbf{Tag Bits} \\ 
+\hline
+\textbf{L1 Data} & 48 KB & 12-way & 64 & 6 bits & \textbf{6 bits} & 52 bits \\ 
+\textbf{L2} & 1.25 MB\tnote{1} & 10-way & 2048 & 6 bits &  \textbf{11 bits} & 47 bits \\ 
+\textbf{L3} & 30 MB & 12-way & 40960 & 6 bits & Hashed\tnote{2} & $\sim$46 bits \\ 
+\hline
+\end{tabular}
+
+\begin{tablenotes}
+    \footnotesize 
+    \item[1] Reported as 1.3M but physically $2048 \text{ sets} \times 10\text{-way} \times 64 \text{ bytes} = 1.25 \text{ MiB}$.
+    \item[2] The L3 cache is divided into multiple physical slices (e.g., 10 slices of 4096 sets), addressed by a hash function computed on the Set Bits.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+The choice to use the least significant bits to group addresses into cache lines, and the subsequent bits to divide them into different sets, is motivated by the \emph{principle of locality}. Since neighboring memory is accessed frequently (as stated by the spatial locality heuristic), merging them into a single cache line is highly efficient. 
+
+
+On the other hand, cache lines belonging to the same set (the same equivalence class) are spaced far apart in memory. Specifically, they are separated by multiples of $2^{(\text{Set bits} + \text{Offset bits})}$ bytes, a distance derived from the combined width of the set and offset fields. This large spacing helps avoid situations where multiple actively used, contiguous memory regions compete for the exact same cache set at the same time.
+
+
+%//==========================//
+%------------------------------
+%//==========================//
+
+
+\subsection{Unroll and Jam}\label{subsec:unroll_jam}
+
+\emph{Unroll-and-jam} is a loop transformation technique (usually implemented by the compiler) that improves data locality and cache exploitation by unrolling an outer loop and fusing the resulting inner loops. 
+
+\begin{lstlisting}[style=CStyle, caption={Original for loops}]
+for (int i = 0; i < N; i++) {
+    for (int j = 0; j < M; j++) {
+        for (int k = 0; k < K; k++) {
+            C[i][j] += A[i][k] * B[k][j];
+        }
+    }
+}
+\end{lstlisting}
+
+First, the compiler \emph{unrolls} the outer loop.
+This duplicates the inner loop for consecutive values of $i$, and is a preliminary step  to allow for optimization.
+
+\begin{lstlisting}[style=CStyle, caption={Loop unrolled (factor of $4$)}]
+for (int i = 0; i < N; i += 4) {
+    for (int j = 0; j < M; j++)
+        for (int k = 0; k < K; k++)
+            C[i][j] += A[i][k] * B[k][j];
+
+    for (int j = 0; j < M; j++)
+        for (int k = 0; k < K; k++)
+            C[i+1][j] += A[i+1][k] * B[k][j];
+
+    for (int j = 0; j < M; j++)
+        for (int k = 0; k < K; k++)
+            C[i+2][j] += A[i+2][k] * B[k][j];
+
+    for (int j = 0; j < M; j++)
+        for (int k = 0; k < K; k++)
+            C[i+3][j] += A[i+3][k] * B[k][j];
+
+}
+\end{lstlisting}
+
+Then, the compiler \emph{jams} back the inner loops together again  into a single inner loop:
+
+\begin{lstlisting}[style=CStyle, caption={Loop unrolled (factor of $4$)  and jammed}]
+for (int i = 0; i < N; i += 4) {
+    for (int j = 0; j < M; j++) {
+        for (int k = 0; k < K; k++) {
+            C[i][j]   += A[i][k] * B[k][j];
+            C[i+1][j] += A[i+1][k] * B[k][j];
+            C[i+2][j] += A[i+2][k] * B[k][j];
+            C[i+3][j] += A[i+3][k] * B[k][j];
+        }
+    }
+}
+\end{lstlisting}
+
+Is immediate to see that this simply  re-work  of the code does not change the correctness of the algorithm, and it simply rearrange the instruction's order.
+
+Now the inner loop better exploit the spacial locality, hence improving the usage of the Caches while also setting up the problem to  allow for the execution of vectorized instructions.
+
+The compiler's ability to execute a \emph{Unroll and jam} by design is motivated by the extreme speed up this simple optimization can  obtain; furthermore, this optimization implemented with a high unroll factor (and on multiple depth) on the Matrix Multiplication naive algorithm is litterally the \texttt{\textbf{Tiling algorithm} explained in Appendix~\ref{subsec:tiling}}.
+
+%//==========================//
+%------------------------------
+%//==========================//
+
+
+\subsection{Mathematical Equivalence of Zero Padding}\label{subsec:padding}
+
+We take our $n \times n$ matrix $A$ and turn it into $A'$, which is $n' \times n'$. We fill the new spots with zeros:
+\[
+A'_{i,j} = 
+\begin{cases} 
+A_{i,j} & \text{if } i, j \leq n \\
+0 & \text{if } i, j > n
+\end{cases}
+\]
+
+In a normal matrix multiplication $C = AB$, each element is:
+\[ C_{i,j} = \sum_{k=1}^{n} A_{i,k} B_{k,j} \]
+
+With padding, the computer calculates the sum all the way to $n'$:
+\[ C'_{i,j} = \sum_{k=1}^{n'} A'_{i,k} B'_{k,j} \]
+
+We can break that padded sum into two parts: the original data and the zero-padding.
+\[ C'_{i,j} = \underbrace{\sum_{k=1}^{n} A_{i,k} B_{k,j}}_{\text{Real Data}} + \underbrace{\sum_{k=n+1}^{n'} 0 \cdot 0}_{\text{Zero Padding}} \]
+
+Since the second part is just a bunch of zeros added together, $C'_{i,j}$ is exactly the same as $C_{i,j}$.
+The only problem that can arise by using a padded matrix is that to fully explore them is needed to know both the real matrix dimension and the original one (i.e the $n$, along with $n'$), else by iterating over it the padded part or the rows will be spilled on the start of the next one.
+
+\end{appendices}

@@ -1,0 +1,56 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.10.0 Build 20230609_000000
+
+Compiler options: -I/VM/stud/S5312342/Downloads/HPC/src -fopenmp -Wall -Wextra -diag-disable=10441 -O1 -ipo -o /VM/stud/S5312342/Downloads/HPC/builds/icc_1/executable -qopt-report=5 -qopt-report-phase=vec,loop -qopt-report-file=/VM/stud/S5312342/Downloads/HPC/builds/icc_1/executable.opt.txt
+
+Begin optimization report for: main(int, char **)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+remark #15320: routine skipped: loop optimizations disabled
+===========================================================================
+
+Begin optimization report for: create_matrix(int)
+
+    Report from: Offload optimizations [offload]
+
+remark #15320: routine skipped: loop optimizations disabled
+===========================================================================
+
+Begin optimization report for: ArgParser_getInt(ArgParser *, const char *, int)
+
+    Report from: Offload optimizations [offload]
+
+remark #15320: routine skipped: loop optimizations disabled
+===========================================================================
+
+Begin optimization report for: ArgParser_create(int, char **)
+
+    Report from: Offload optimizations [offload]
+
+remark #15320: routine skipped: loop optimizations disabled
+===========================================================================
+
+Begin optimization report for: printErrors(ErrorEntry *, int)
+
+    Report from: Offload optimizations [offload]
+
+remark #15320: routine skipped: loop optimizations disabled
+===========================================================================
+
+Begin optimization report for: get_errors(int, m_type (*)[*], m_type (*)[*], m_type (*)[*], double, int, ErrorEntry *)
+
+    Report from: Offload optimizations [offload]
+
+remark #15320: routine skipped: loop optimizations disabled
+===========================================================================
+
+Begin optimization report for: init_matrices(int, m_type (*)[*], m_type (*)[*], m_type (*)[*])
+
+    Report from: Offload optimizations [offload]
+
+remark #15320: routine skipped: loop optimizations disabled
+===========================================================================

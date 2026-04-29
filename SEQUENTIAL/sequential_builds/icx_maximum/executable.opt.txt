@@ -1,0 +1,407 @@
+Global optimization report for : main
+
+LOOP BEGIN at src/arg_parser.c (74, 5)
+    remark #15527: Loop was not vectorized: function call to  cannot be vectorized
+    remark #25439: Loop unrolled with remainder by 2
+LOOP END
+
+LOOP BEGIN at src/arg_parser.c (61, 5)
+    remark #15344: Loop was not vectorized: vector dependence prevents vectorization
+    remark #15346: vector dependence: assumed FLOW dependence
+    remark #25439: Loop unrolled with remainder by 2
+LOOP END
+
+LOOP BEGIN at src/arg_parser.c (88, 5)
+    remark #15527: Loop was not vectorized: function call to  cannot be vectorized
+    remark #25439: Loop unrolled with remainder by 2
+LOOP END
+
+LOOP BEGIN at src/arg_parser.c (74, 5)
+    remark #15527: Loop was not vectorized: function call to  cannot be vectorized
+    remark #25439: Loop unrolled with remainder by 2
+LOOP END
+
+LOOP BEGIN at src/arg_parser.c (74, 5)
+    remark #15527: Loop was not vectorized: function call to  cannot be vectorized
+    remark #25439: Loop unrolled with remainder by 2
+LOOP END
+
+LOOP BEGIN at src/arg_parser.c (74, 5)
+    remark #15527: Loop was not vectorized: function call to  cannot be vectorized
+    remark #25439: Loop unrolled with remainder by 2
+LOOP END
+
+LOOP BEGIN at src/arg_parser.c (74, 5)
+    remark #15527: Loop was not vectorized: function call to  cannot be vectorized
+    remark #25439: Loop unrolled with remainder by 2
+LOOP END
+
+LOOP BEGIN at src/arg_parser.c (74, 5)
+    remark #15527: Loop was not vectorized: function call to  cannot be vectorized
+    remark #25439: Loop unrolled with remainder by 2
+LOOP END
+
+LOOP BEGIN at src/arg_parser.c (35, 5)
+    remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification 5.0
+    remark #25439: Loop unrolled with remainder by 2
+LOOP END
+
+LOOP BEGIN at src/matrix_utils.c (48, 9)
+<Multiversioned v2>
+    remark #15527: Loop was not vectorized: function call to  cannot be vectorized
+LOOP END
+
+LOOP BEGIN at src/matrix_utils.c (48, 9)
+<Multiversioned v1>
+    remark #25567: 2 loops have been collapsed
+    remark #25408: memset generated
+    remark #25562: The loop has been multiversioned for the small trip count
+    remark #15527: Loop was not vectorized: function call to  cannot be vectorized
+    remark #25439: Loop unrolled with remainder by 4
+LOOP END
+
+LOOP BEGIN at src/matrix_utils.c (48, 9)
+<Remainder loop>
+LOOP END
+
+LOOP BEGIN at src/versions/orig.c (19, 5)
+    remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+    LOOP BEGIN at src/versions/orig.c (20, 9)
+        remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+        LOOP BEGIN at src/versions/orig.c (21, 13)
+            remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+            LOOP BEGIN at src/versions/orig.c (19, 5)
+                remark #25566: blocked by 64
+                remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+                LOOP BEGIN at src/versions/orig.c (20, 9)
+                    remark #25566: blocked by 64
+                    remark #25540: Loop unrolled and jammed by 4
+                    remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+                    LOOP BEGIN at src/versions/orig.c (21, 13)
+                        remark #25566: blocked by 64
+                        remark #25563: Load hoisted out of the loop
+                        remark #15300: LOOP WAS VECTORIZED
+                        remark #15305: vectorization support: vector length 4
+                        remark #15475: --- begin vector loop cost summary ---
+                        remark #15476: scalar cost: 27.000000 
+                        remark #15477: vector cost: 8.250000 
+                        remark #15478: estimated potential speedup: 3.250000 
+                        remark #15309: vectorization support: normalized vectorization overhead 0.234375
+                        remark #15482: vectorized math library calls: 0 
+                        remark #15484: vector function calls: 0 
+                        remark #15485: serialized function calls: 0
+                        remark #15488: --- end vector loop cost summary ---
+                        remark #15447: --- begin vector loop memory reference summary ---
+                        remark #15450: unmasked unaligned unit stride loads: 8 
+                        remark #15451: unmasked unaligned unit stride stores: 4 
+                        remark #15456: masked unaligned unit stride loads: 0 
+                        remark #15457: masked unaligned unit stride stores: 0 
+                        remark #15458: masked indexed (or gather) loads: 0 
+                        remark #15459: masked indexed (or scatter) stores: 0 
+                        remark #15462: unmasked indexed (or gather) loads: 0 
+                        remark #15463: unmasked indexed (or scatter) stores: 0 
+                        remark #15554: Unmasked VLS-optimized loads (each part of the group counted separately): 0
+                        remark #15555: Masked VLS-optimized loads (each part of the group counted separately): 0
+                        remark #15556: Unmasked VLS-optimized stores (each part of the group counted separately): 0
+                        remark #15557: Masked VLS-optimized stores (each part of the group counted separately): 0
+                        remark #15497: vector compress: 0 
+                        remark #15498: vector expand: 0 
+                        remark #15474: --- end vector loop memory reference summary ---
+                        remark #25583: Number of Array Refs Scalar Replaced In Loop: 6
+                    LOOP END
+
+                    LOOP BEGIN at src/versions/orig.c (21, 13)
+                    <Remainder loop for vectorization>
+                        remark #25583: Number of Array Refs Scalar Replaced In Loop: 6
+                    LOOP END
+                LOOP END
+
+                LOOP BEGIN at src/versions/orig.c (20, 9)
+                <Remainder loop>
+                    remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+                    LOOP BEGIN at src/versions/orig.c (21, 13)
+                        remark #15300: LOOP WAS VECTORIZED
+                        remark #15305: vectorization support: vector length 4
+                        remark #15475: --- begin vector loop cost summary ---
+                        remark #15476: scalar cost: 9.000000 
+                        remark #15477: vector cost: 3.187500 
+                        remark #15478: estimated potential speedup: 2.781250 
+                        remark #15309: vectorization support: normalized vectorization overhead 0.625000
+                        remark #15482: vectorized math library calls: 0 
+                        remark #15484: vector function calls: 0 
+                        remark #15485: serialized function calls: 0
+                        remark #15488: --- end vector loop cost summary ---
+                        remark #15447: --- begin vector loop memory reference summary ---
+                        remark #15450: unmasked unaligned unit stride loads: 2 
+                        remark #15451: unmasked unaligned unit stride stores: 1 
+                        remark #15456: masked unaligned unit stride loads: 0 
+                        remark #15457: masked unaligned unit stride stores: 0 
+                        remark #15458: masked indexed (or gather) loads: 0 
+                        remark #15459: masked indexed (or scatter) stores: 0 
+                        remark #15462: unmasked indexed (or gather) loads: 0 
+                        remark #15463: unmasked indexed (or scatter) stores: 0 
+                        remark #15554: Unmasked VLS-optimized loads (each part of the group counted separately): 0
+                        remark #15555: Masked VLS-optimized loads (each part of the group counted separately): 0
+                        remark #15556: Unmasked VLS-optimized stores (each part of the group counted separately): 0
+                        remark #15557: Masked VLS-optimized stores (each part of the group counted separately): 0
+                        remark #15497: vector compress: 0 
+                        remark #15498: vector expand: 0 
+                        remark #15474: --- end vector loop memory reference summary ---
+                    LOOP END
+
+                    LOOP BEGIN at src/versions/orig.c (21, 13)
+                    <Remainder loop for vectorization>
+                    LOOP END
+                LOOP END
+            LOOP END
+        LOOP END
+    LOOP END
+LOOP END
+
+LOOP BEGIN at src/io_utils.c (18, 5)
+    remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+    LOOP BEGIN at src/io_utils.c (19, 9)
+        remark #15553: loop was not vectorized: outer loop is not an auto-vectorization candidate.
+
+        LOOP BEGIN at src/io_utils.c (21, 13)
+            remark #15300: LOOP WAS VECTORIZED
+            remark #15305: vectorization support: vector length 4
+            remark #15475: --- begin vector loop cost summary ---
+            remark #15476: scalar cost: 10.000000 
+            remark #15477: vector cost: 5.546875 
+            remark #15478: estimated potential speedup: 1.765625 
+            remark #15309: vectorization support: normalized vectorization overhead 1.078125
+            remark #15482: vectorized math library calls: 0 
+            remark #15484: vector function calls: 0 
+            remark #15485: serialized function calls: 0
+            remark #15488: --- end vector loop cost summary ---
+            remark #15447: --- begin vector loop memory reference summary ---
+            remark #15450: unmasked unaligned unit stride loads: 1 
+            remark #15451: unmasked unaligned unit stride stores: 0 
+            remark #15456: masked unaligned unit stride loads: 0 
+            remark #15457: masked unaligned unit stride stores: 0 
+            remark #15458: masked indexed (or gather) loads: 0 
+            remark #15459: masked indexed (or scatter) stores: 0 
+            remark #15462: unmasked indexed (or gather) loads: 1 
+            remark #15463: unmasked indexed (or scatter) stores: 0 
+            remark #15567: Gathers are generated due to non-unit stride index of the corresponding loads.
+            remark #15554: Unmasked VLS-optimized loads (each part of the group counted separately): 0
+            remark #15555: Masked VLS-optimized loads (each part of the group counted separately): 0
+            remark #15556: Unmasked VLS-optimized stores (each part of the group counted separately): 0
+            remark #15557: Masked VLS-optimized stores (each part of the group counted separately): 0
+            remark #15497: vector compress: 0 
+            remark #15498: vector expand: 0 
+            remark #15474: --- end vector loop memory reference summary ---
+            remark #25587: Loop has reduction
+        LOOP END
+
+        LOOP BEGIN at src/io_utils.c (21, 13)
+        <Remainder loop for vectorization>
+        LOOP END
+    LOOP END
+LOOP END
+
+LOOP BEGIN at src/arg_parser.c (46, 9)
+    remark #15527: Loop was not vectorized: function call to  cannot be vectorized
+    remark #25439: Loop unrolled with remainder by 4
+LOOP END
+
+LOOP BEGIN at src/arg_parser.c (46, 9)
+<Remainder loop>
+LOOP END
+=================================================================
+
+Global optimization report for : printResult
+=================================================================
+
+Global optimization report for : printErrors
+
+LOOP BEGIN at src/io_utils.c (40, 5)
+    remark #15344: Loop was not vectorized: vector dependence prevents vectorization
+    remark #15346: vector dependence: assumed ANTI dependence
+    remark #15346: vector dependence: assumed FLOW dependence
+    remark #15346: vector dependence: assumed FLOW dependence
+    remark #25439: Loop unrolled with remainder by 4
+LOOP END
+
+LOOP BEGIN at src/io_utils.c (40, 5)
+<Remainder loop>
+LOOP END
+=================================================================
+
+---- Begin Inlining Report ----
+Option Values:
+  inline-threshold: 225
+  inlinehint-threshold: 325
+  inlinecold-threshold: 45
+  inlineoptsize-threshold: 15
+
+DEAD STATIC FUNC: ArgParser_create
+
+DEAD STATIC FUNC: ArgParser_destroy
+
+DEAD STATIC FUNC: ArgParser_getDouble
+
+DEAD STATIC FUNC: ArgParser_getFlag
+
+DEAD STATIC FUNC: ArgParser_getInt
+
+DEAD STATIC FUNC: create_matrix
+
+DEAD STATIC FUNC: free_matrix
+
+DEAD STATIC FUNC: get_errors
+
+DEAD STATIC FUNC: init_matrices
+
+DEAD STATIC FUNC: multiply_matrices
+
+COMPILE FUNC: main
+   -> INLINE: ArgParser_create ld-temp.o (16,25) (-14735<=225)
+      -> DELETE: malloc ld-temp.o (5,38)
+      -> DELETE: perror ld-temp.o (8,9)
+      -> DELETE: exit ld-temp.o (9,9)
+      -> EXTERN: calloc ld-temp.o (16,31)
+      -> EXTERN: perror ld-temp.o (19,9)
+      -> DELETE: free ld-temp.o (20,9)
+      -> EXTERN: exit ld-temp.o (21,9)
+   -> INLINE: ArgParser_getInt ld-temp.o (20,22) (125<=225)
+      -> DELETE: strcmp ld-temp.o (76,13)
+      -> EXTERN: strtol ld-temp.o (364,16)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+   -> INLINE: ArgParser_getFlag ld-temp.o (36,30) (-14925<=225)
+      -> DELETE: strcmp ld-temp.o (63,13)
+      -> EXTERN: strcmp ld-temp.o (63,13)
+      -> EXTERN: strcmp ld-temp.o (63,13)
+      -> EXTERN: strcmp ld-temp.o (63,13)
+   -> INLINE: ArgParser_getDouble ld-temp.o (37,28) (-14870<=225)
+      -> DELETE: strcmp ld-temp.o (90,13)
+      -> EXTERN: strtod ld-temp.o (27,10)
+      -> EXTERN: strcmp ld-temp.o (90,13)
+      -> EXTERN: strcmp ld-temp.o (90,13)
+      -> EXTERN: strcmp ld-temp.o (90,13)
+   -> INLINE: ArgParser_getInt ld-temp.o (38,28) (125<=225)
+      -> DELETE: strcmp ld-temp.o (76,13)
+      -> EXTERN: strtol ld-temp.o (364,16)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+   -> EXTERN: omp_get_max_threads ld-temp.o (41,71)
+   -> INLINE: ArgParser_getInt ld-temp.o (41,29) (125<=225)
+      -> DELETE: strcmp ld-temp.o (76,13)
+      -> EXTERN: strtol ld-temp.o (364,16)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+   -> INLINE: ArgParser_getInt ld-temp.o (42,27) (125<=225)
+      -> DELETE: strcmp ld-temp.o (76,13)
+      -> EXTERN: strtol ld-temp.o (364,16)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+   -> INLINE: ArgParser_getInt ld-temp.o (43,27) (125<=225)
+      -> DELETE: strcmp ld-temp.o (76,13)
+      -> EXTERN: strtol ld-temp.o (364,16)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+   -> INLINE: ArgParser_getInt ld-temp.o (44,27) (-14875<=225)
+      -> DELETE: strcmp ld-temp.o (76,13)
+      -> EXTERN: strtol ld-temp.o (364,16)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+      -> EXTERN: strcmp ld-temp.o (76,13)
+   -> INLINE: ArgParser_destroy ld-temp.o (49,5) (-14690<=225)
+      -> EXTERN: fwrite ld-temp.o (44,9)
+      -> EXTERN: fputc ld-temp.o (49,9)
+      -> EXTERN: exit ld-temp.o (51,9)
+      -> DELETE: fprintf ld-temp.o (48,17)
+      -> EXTERN: free ld-temp.o (55,5)
+      -> DELETE: free ld-temp.o (56,5)
+      -> EXTERN: fprintf ld-temp.o (48,17)
+      -> EXTERN: fprintf ld-temp.o (48,17)
+      -> EXTERN: fprintf ld-temp.o (48,17)
+      -> EXTERN: fprintf ld-temp.o (48,17)
+      -> EXTERN: fprintf ld-temp.o (48,17)
+   -> INLINE: create_matrix ld-temp.o (54,22) (60<=225)
+      -> EXTERN: malloc ld-temp.o (14,14)
+      -> EXTERN: exit ld-temp.o (15,18)
+   -> INLINE: create_matrix ld-temp.o (55,22) (60<=225)
+      -> EXTERN: malloc ld-temp.o (14,14)
+      -> EXTERN: exit ld-temp.o (15,18)
+   -> INLINE: create_matrix ld-temp.o (56,22) (-14940<=225)
+      -> EXTERN: malloc ld-temp.o (14,14)
+      -> EXTERN: exit ld-temp.o (15,18)
+   -> INLINE: init_matrices ld-temp.o (61,5) (-14910<=225)
+      -> DELETE: rand ld-temp.o (49,31)
+      -> DELETE: rand ld-temp.o (50,31)
+      -> EXTERN: rand ld-temp.o (49,31)
+      -> EXTERN: rand ld-temp.o (50,31)
+      -> EXTERN: rand ld-temp.o (49,31)
+      -> EXTERN: rand ld-temp.o (50,31)
+      -> EXTERN: rand ld-temp.o (49,31)
+      -> EXTERN: rand ld-temp.o (50,31)
+      -> EXTERN: rand ld-temp.o (49,31)
+      -> EXTERN: rand ld-temp.o (50,31)
+      -> EXTERN: rand ld-temp.o (49,31)
+      -> EXTERN: rand ld-temp.o (50,31)
+      -> EXTERN: rand ld-temp.o (49,31)
+      -> EXTERN: rand ld-temp.o (50,31)
+   -> EXTERN: malloc ld-temp.o (66,33)
+   -> EXTERN: omp_get_wtime ld-temp.o (69,22)
+   -> EXTERN: clock ld-temp.o (70,22)
+   -> INLINE: multiply_matrices ld-temp.o (73,5) (-14955<=225)
+   -> EXTERN: omp_get_wtime ld-temp.o (76,22)
+   -> EXTERN: clock ld-temp.o (77,22)
+   -> INLINE: get_errors ld-temp.o (85,26) (-14895<=225)
+      -> DELETE: llvm.fabs.f64 ld-temp.o (24,17)
+      -> llvm.fabs.f64 ld-temp.o (24,17)
+   -> printErrors ld-temp.o (88,13) (180>1 [EE:20>0])
+   -> printResult ld-temp.o (94,5) (80>1 [EE:0>0])
+   -> EXTERN: free ld-temp.o (100,5)
+   -> INLINE: free_matrix ld-temp.o (101,5) (0<=1)
+      -> EXTERN: free ld-temp.o (24,5)
+   -> INLINE: free_matrix ld-temp.o (102,5) (0<=1)
+      -> EXTERN: free ld-temp.o (24,5)
+   -> INLINE: free_matrix ld-temp.o (103,5) (0<=1)
+      -> EXTERN: free ld-temp.o (24,5)
+   -> EXTERN: exit ld-temp.o (105,5)
+   -> llvm.experimental.noalias.scope.decl ld-temp.o (61,5)
+   -> llvm.experimental.noalias.scope.decl ld-temp.o (61,5)
+   -> llvm.experimental.noalias.scope.decl ld-temp.o (61,5)
+   -> llvm.experimental.noalias.scope.decl ld-temp.o (73,5)
+   -> llvm.experimental.noalias.scope.decl ld-temp.o (73,5)
+   -> llvm.experimental.noalias.scope.decl ld-temp.o (73,5)
+   -> llvm.experimental.noalias.scope.decl ld-temp.o (85,26)
+   -> llvm.experimental.noalias.scope.decl ld-temp.o (85,26)
+   -> llvm.experimental.noalias.scope.decl ld-temp.o (85,26)
+   -> llvm.experimental.noalias.scope.decl ld-temp.o (85,26)
+   -> llvm.memset.p0.i64 ld-temp.o (51,13)
+   -> llvm.masked.gather.v4f64.v4p0 ld-temp.o (22,34)
+   -> llvm.vector.reduce.fadd.v4f64 ld-temp.o (22,21)
+
+COMPILE FUNC: printErrors
+   -> EXTERN: fprintf ld-temp.o (49,5)
+   -> EXTERN: exit ld-temp.o (50,5)
+   -> DELETE: fprintf ld-temp.o (42,9)
+   -> EXTERN: fprintf ld-temp.o (42,9)
+   -> EXTERN: fprintf ld-temp.o (42,9)
+   -> EXTERN: fprintf ld-temp.o (42,9)
+   -> EXTERN: fprintf ld-temp.o (42,9)
+   -> EXTERN: fprintf ld-temp.o (42,9)
+
+COMPILE FUNC: printResult
+   -> EXTERN: printf ld-temp.o (6,5)
+   -> EXTERN: printf ld-temp.o (7,5)
+   -> EXTERN: fflush ld-temp.o (8,5)
+
+---- End Inlining Report ------

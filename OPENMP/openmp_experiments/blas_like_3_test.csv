@@ -1,0 +1,16 @@
+executable,returncode,n,threads,schedule,block_size,OMP_PROC_BIND,OMP_PLACES,real_time_seconds,cpu_time_seconds
+blas_like_openmp,0,5000,16,2,1,close,sockets,0.971373,10.327743
+blas_like_openmp,0,10000,16,2,1,close,sockets,5.045504,64.653582
+blas_like_openmp,0,15000,16,2,1,close,sockets,15.837089,223.224438
+blas_like_openmp,0,5000,16,2,1,close,sockets,0.815043,8.824012
+blas_like_openmp,0,10000,16,2,1,close,sockets,5.086634,66.295967
+blas_like_openmp,0,15000,16,2,1,close,sockets,15.781979,218.330546
+blas_like_openmp,0,5000,16,2,1,close,sockets,0.751239,8.800003
+blas_like_openmp,0,10000,16,2,1,close,sockets,4.659506,63.169698
+blas_like_openmp,0,15000,16,2,1,close,sockets,15.618415,224.460952
+blas_like_openmp,0,5000,16,2,1,close,sockets,0.971036,9.080603
+blas_like_openmp,0,10000,16,2,1,close,sockets,4.928011,64.349049
+blas_like_openmp,0,15000,16,2,1,close,sockets,15.242591,218.471161
+blas_like_openmp,0,5000,16,2,1,close,sockets,0.903340,9.159251
+blas_like_openmp,0,10000,16,2,1,close,sockets,4.810027,64.654918
+blas_like_openmp,0,15000,16,2,1,close,sockets,15.374584,216.877841

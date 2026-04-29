@@ -1,0 +1,331 @@
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/io_utils.c', Line: 6, Column: 5 }
+Function:        printResult
+Args:
+  - Callee:          printf
+  - String:          ' will not be inlined into '
+  - Caller:          printResult
+    DebugLoc:        { File: 'src/io_utils.c', Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/io_utils.c', Line: 7, Column: 5 }
+Function:        printResult
+Args:
+  - Callee:          printf
+  - String:          ' will not be inlined into '
+  - Caller:          printResult
+    DebugLoc:        { File: 'src/io_utils.c', Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/io_utils.c', Line: 8, Column: 5 }
+Function:        printResult
+Args:
+  - Callee:          fflush
+  - String:          ' will not be inlined into '
+  - Caller:          printResult
+    DebugLoc:        { File: 'src/io_utils.c', Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/io_utils.c', Line: 6, Column: 5 }
+Function:        printResult
+Args:
+  - Callee:          printf
+  - String:          ' will not be inlined into '
+  - Caller:          printResult
+    DebugLoc:        { File: 'src/io_utils.c', Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/io_utils.c', Line: 7, Column: 5 }
+Function:        printResult
+Args:
+  - Callee:          printf
+  - String:          ' will not be inlined into '
+  - Caller:          printResult
+    DebugLoc:        { File: 'src/io_utils.c', Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/io_utils.c', Line: 8, Column: 5 }
+Function:        printResult
+Args:
+  - Callee:          fflush
+  - String:          ' will not be inlined into '
+  - Caller:          printResult
+    DebugLoc:        { File: 'src/io_utils.c', Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: 'src/io_utils.c', Line: 8, Column: 12 }
+Function:        printResult
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: 'src/io_utils.c', Line: 7, Column: 5 }
+...
+--- !Passed
+Pass:            licm
+Name:            InstSunk
+Function:        get_errors
+Args:
+  - String:          'sinking '
+  - Inst:            zext
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+Function:        get_errors
+Args:
+  - String:          'hoisting '
+  - Inst:            zext
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+Function:        get_errors
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+Function:        get_errors
+Args:
+  - String:          'hoisting '
+  - Inst:            zext
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/io_utils.c', Line: 22, Column: 24 }
+Function:        get_errors
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: 'src/io_utils.c', Line: 22, Column: 24 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+Function:        get_errors
+Args:
+  - String:          'hoisting '
+  - Inst:            zext
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+Function:        get_errors
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/io_utils.c', Line: 21, Column: 31 }
+Function:        get_errors
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: 'src/io_utils.c', Line: 21, Column: 31 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/io_utils.c', Line: 22, Column: 24 }
+Function:        get_errors
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: 'src/io_utils.c', Line: 22, Column: 24 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/io_utils.c', Line: 24, Column: 22 }
+Function:        get_errors
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: 'src/io_utils.c', Line: 24, Column: 22 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/io_utils.c', Line: 19, Column: 27 }
+Function:        get_errors
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: 'src/io_utils.c', Line: 19, Column: 27 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/io_utils.c', Line: 22, Column: 34 }
+Function:        get_errors
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: 'src/io_utils.c', Line: 22, Column: 34 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/io_utils.c', Line: 26, Column: 50 }
+Function:        get_errors
+Args:
+  - String:          'hoisting '
+  - Inst:            trunc
+    DebugLoc:        { File: 'src/io_utils.c', Line: 26, Column: 50 }
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/io_utils.c', Line: 49, Column: 5 }
+Function:        printErrors
+Args:
+  - Callee:          fprintf
+  - String:          ' will not be inlined into '
+  - Caller:          printErrors
+    DebugLoc:        { File: 'src/io_utils.c', Line: 39, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/io_utils.c', Line: 50, Column: 5 }
+Function:        printErrors
+Args:
+  - Callee:          exit
+  - String:          ' will not be inlined into '
+  - Caller:          printErrors
+    DebugLoc:        { File: 'src/io_utils.c', Line: 39, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/io_utils.c', Line: 42, Column: 9 }
+Function:        printErrors
+Args:
+  - Callee:          fprintf
+  - String:          ' will not be inlined into '
+  - Caller:          printErrors
+    DebugLoc:        { File: 'src/io_utils.c', Line: 39, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/io_utils.c', Line: 49, Column: 5 }
+Function:        printErrors
+Args:
+  - Callee:          fprintf
+  - String:          ' will not be inlined into '
+  - Caller:          printErrors
+    DebugLoc:        { File: 'src/io_utils.c', Line: 39, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/io_utils.c', Line: 50, Column: 5 }
+Function:        printErrors
+Args:
+  - Callee:          exit
+  - String:          ' will not be inlined into '
+  - Caller:          printErrors
+    DebugLoc:        { File: 'src/io_utils.c', Line: 39, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/io_utils.c', Line: 42, Column: 9 }
+Function:        printErrors
+Args:
+  - Callee:          fprintf
+  - String:          ' will not be inlined into '
+  - Caller:          printErrors
+    DebugLoc:        { File: 'src/io_utils.c', Line: 39, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+Function:        printErrors
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+Function:        printErrors
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        printErrors
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     load
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: 'src/io_utils.c', Line: 42, Column: 9 }
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+Function:        printErrors
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' in favor of '
+  - OtherAccess:     load
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: 'src/io_utils.c', Line: 42, Column: 9 }
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+Function:        printErrors
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...
+--- !Missed
+Pass:            licm
+Name:            LoadWithLoopInvariantAddressInvalidated
+Function:        printErrors
+Args:
+  - String:          failed to move load with loop-invariant address because the loop may invalidate its value
+...

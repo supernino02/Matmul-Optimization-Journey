@@ -1,0 +1,65 @@
+\section{Final Comparison}\label{sec:results}
+
+For completeness, Table~\ref{table:results} provides an integral summary of the best performances achieved across all our implementations, illustrating the overall optimization trajectory for matrices of the tested dimensions.
+
+\begin{table}[H]
+\centering
+% The resizebox must wrap the ENTIRE threeparttable
+\resizebox{\textwidth}{!}{%
+  \begin{threeparttable}
+    \caption{Integral performance summary of all implementations across matrix dimensions $N=5000$, $10000$, and $15000$. Percentages reflect computational throughput (GFLOPS) relative to the best measured baseline: Intel MKL (OpenMP, $T=16$).}
+    \label{table:results}
+    
+    \begin{tabular}{l|ccc|ccc|ccc}
+    \toprule
+     & \multicolumn{3}{c|}{\textbf{N = 5000}} & \multicolumn{3}{c|}{\textbf{N = 10000}} & \multicolumn{3}{c}{\textbf{N = 15000}} \\
+    \textbf{Implementation} & \textbf{Time (s)} & \textbf{GFLOPS} & \textbf{\%} & \textbf{Time (s)} & \textbf{GFLOPS} & \textbf{\%} & \textbf{Time (s)} & \textbf{GFLOPS} & \textbf{\%} \\
+    \midrule
+
+    \multicolumn{10}{c}{\textbf{Sequential Implementations}} \\
+    \midrule
+    ICC \texttt{-O0}                         & 388.781 & 0.64  & 0.14\%  & 3028.552 & 0.66  & 0.13\%  & - & - & - \\
+    ICC \texttt{-O1}                         & 69.403  & 3.60  & 0.77\%  & 525.154  & 3.81  & 0.73\%  & - & - & - \\
+    ICC \texttt{-O2}                         & 50.030  & 5.00  & 1.07\%  & 401.861  & 4.98  & 0.96\%  & - & - & - \\
+    ICC \texttt{-O3}                         & 18.258  & 13.69 & 2.94\%  & 196.361  & 10.19 & 1.96\%  & - & - & - \\
+    ICC \texttt{-O3 -xHost}\tnote{1}         & 9.901   & 25.25 & 5.42\%  & 70.019   & 28.56 & 5.51\%  & 275.428 & 24.51 & 4.69\% \\
+    ICC \texttt{-O3 -xHost}\tnote{1} \texttt{-DALIGN} & 6.511   & 38.40 & 8.24\%  & 52.206   & 38.31 & 7.39\%  & 175.374 & 38.49 & 7.37\% \\
+    Custom OpenBLAS (Seq)                    & 4.556   & 54.87 & 11.78\% & 36.864   & 54.25 & 10.46\% & 123.927 & 54.47 & 10.43\% \\
+    OpenBLAS (Seq)                           & 4.406   & 56.74 & 12.18\% & 32.458   & 61.62 & 11.88\% & 109.035 & 61.91 & 11.85\% \\
+    Intel MKL (Seq)                          & 4.020   & 62.19 & 13.35\% & 32.076   & 62.35 & 12.02\% & 108.020 & 62.49 & 11.97\% \\
+    
+    \midrule
+    \multicolumn{10}{c}{\textbf{OpenMP Implementations}} \\
+    \midrule
+    Original ($T=24$)                        & 5.360 & 46.65 & 10.02\% & 43.087 & 46.42 & 8.95\%  & 149.783 & 45.07 & 8.63\% \\
+    Blas-Like ($T=16$, default)              & 0.837 & 298.62 & 64.11\% & 5.789 & 345.47 & 66.62\% & 16.752 & 402.93 & 77.15\% \\
+    Blas-Like ($T=16$, dynamic, 1)           & 0.804 & 310.97 & 66.76\% & 4.977 & 401.82 & 77.49\% & 15.571 & 433.49 & 83.01\% \\
+    Blas-Like (Optimal)\tnote{2}             & 0.882 & 283.32 & 60.83\% & 4.906 & 407.67 & 78.61\% & 15.571 & 433.50 & 83.01\% \\
+    OpenBLAS ($T=16$)                        & 0.662 & 377.37 & 81.02\% & 4.677 & 427.65 & 82.47\% & 16.997 & 397.13 & 76.04\% \\
+    \textbf{Intel MKL ($T=16$)}              & \textbf{0.537} & \textbf{465.77} & \textbf{100.00\%} & \textbf{3.857} & \textbf{518.57} & \textbf{100.00\%} & \textbf{12.925} & \textbf{522.24} & \textbf{100.00\%} \\
+
+    \midrule
+    \multicolumn{10}{c}{\textbf{CUDA Implementations}} \\
+    \midrule
+    Kernel 1 (16x16)                         & 1.600 & 156.25 & 33.55\% & 11.034 & 181.26 & 34.95\% & 42.411 & 159.16 & 30.48\% \\
+    Kernel 2 (32x32)                         & 1.411 & 177.18 & 38.04\% & 9.973  & 200.54 & 38.67\% & 33.582 & 201.00 & 38.49\% \\
+    cuBLAS                                   & 1.326 & 188.54 & 40.48\% & 8.921  & 224.19 & 43.23\% & 29.304 & 230.34 & 44.11\% \\
+
+    \midrule
+    \multicolumn{10}{c}{\textbf{MPI Implementations}} \\
+    \midrule
+    MPI Original($p=24$)                             & 1.327 & 188.38 & 40.44\% & 5.558  & 359.82 & 69.39\% & 19.465 & 346.78 & 66.40\% \\
+    MPI Intel MKL\tnote{3}                & \textit{\textasciitilde 0.450} & \textit{555.56} & \textit{119.28\%} & \textit{\textasciitilde 4.500} & \textit{444.44} & \textit{85.70\%} & \textit{\textasciitilde 15.000} & \textit{450.00} & \textit{86.17\%} \\
+    
+    \bottomrule
+    \end{tabular}
+    
+    \begin{tablenotes}
+        \footnotesize
+        \item[1] Actually were also used \texttt{-ipo}, \texttt{-fp-model}, \texttt{fast=2}, \texttt{-fno-alias}, \texttt{-inline-level=2}, \texttt{-unroll-aggressive}, \texttt{-unroll=4}, as explained in Table~\ref{tab:advanced_flags}.
+        \item[2] Evaluated with tuned affinity settings: \texttt{OMP\_PROC\_BIND=close, OMP\_PLACES=sockets}.
+        \item[3] Theoretical performance estimation using Intel MKL/ScaLAPACK libraries with AVX-512 instructions.
+    \end{tablenotes}
+  \end{threeparttable}%
+}
+\end{table}

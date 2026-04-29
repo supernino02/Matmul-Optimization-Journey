@@ -1,0 +1,34 @@
+\section{Introduction}
+
+\subsection{Problem definition}
+
+Matrix Multiplication (MM) is a fundamental high-performance computing (HPC) kernel, widely used to benchmark parallel architectures due to its high arithmetic intensity. For square matrices $A, B \in \mathbb{R}^{n \times n}$, the product $C \in \mathbb{R}^{n \times n}$ is defined as:
+\begin{equation}
+    C_{ij} = \sum_{k=1}^{n} A_{ik} B_{kj} \qquad \text{for} \quad 1 \le i, j \le n
+\end{equation}
+
+Computing a single element $C_{ij}$ requires a dot product between the $i$-th row of $A$ and the $j$-th column of $B$, involving exactly $n$ multiplications and $n-1$ additions. Therefore, calculating one element takes approximately $2n$ floating-point operations (FLOPs). 
+
+Since the matrix $C$ contains $n^2$ elements, the total arithmetic cost is $n^2 \times 2n = 2n^3$ FLOPs, hence complexity of $\mathcal{O}(n^3)$. 
+
+The objective of this project is to analyze and optimize MM performance through iterative parallelization\footnote{Different algorithms are used to implement the Matrix Multiplication; their in-depth description can be found in Appendix~\ref{app:algorithms}.}. 
+
+
+\subsection{Roadmap}\label{subsec:iterative_improvements}
+
+Starting from a sequential baseline for matrix multiplication, we progressively introduce hardware-aware optimizations using OpenMP, CUDA, and MPI. 
+To approach peak theoretical performance, the execution is iteratively optimized by exploiting the hierarchy of parallelism in modern High-Performance Computing (HPC) systems:
+
+\begin{itemize}
+    \item \textbf{Instruction and Vector Level (SIMD):} The simultaneous execution of operations (e.g., FMA: $a + (b \times c)$) and the application of single instructions to multiple data points via registers. This is exploited at the core level through aggressive compiler optimizations and explicit AVX intrinsics in Section~\ref{sec:sequential}.
+    
+    \item \textbf{Hyperthreading and Core Level:} The utilization of multiple logical threads sharing execution resources, alongside independent physical processing units on a CPU. This is leveraged by using OpenMP (Section~\ref{sec:openmp}), to distribute the workload across available threads and cores.
+    
+    \item \textbf{Accelerator Level:} The offloading of heavily data-parallel tasks to specialized hybrid hardware. This is addressed by executing the matrix blocks on the GPU utilizing CUDA (Section~\ref{sec:CUDA}).
+    
+    \item \textbf{Node Level:} The utilization of individual computers connected via high-speed interconnects within a cluster. This is managed using MPI (Section~\ref{sec:mpi}) to partition and distribute the overall computation across multiple discrete nodes\footnote{While the proposed implementation could actually run a distributed framework, due to hardware limitation all the tests were made on a single machine.}.
+\end{itemize}
+
+
+
+In theory, this parallelization strategy could be further extended to exploit multi-socket architectures (multiple physical CPUs on a single node) and Grid/Cloud distributions (multiple systems linked over a network for massive workloads). However, these specific levels are omitted due to the lack of hardware capabilities.

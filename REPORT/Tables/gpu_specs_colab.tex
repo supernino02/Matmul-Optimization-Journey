@@ -1,0 +1,50 @@
+\begin{table}[H]
+\centering
+\caption{GPU hardware specifications of the Google Colab environment.}
+\label{tab:gpu_specs_colab}
+\begin{tabular}{ll}
+\toprule
+\textbf{Component} & \textbf{Specification} \\
+\midrule
+\multicolumn{2}{l}{\textit{General Information}} \\
+GPU Model & NVIDIA Tesla T4 \\
+Architecture & Turing \\
+Compute Capability & 7.5 \\
+Streaming Multiprocessors (SM) & 40 \\
+CUDA Cores & 2560 \\
+Tensor Cores & 320 \\
+Driver Version & 580.82.07 \\
+CUDA Version (driver) & 13.0 \\
+CUDA Toolkit (nvcc) & 12.8 (V12.8.93) \\
+\\
+\multicolumn{2}{l}{\textit{Memory Subsystem}} \\
+Memory Type & GDDR6 \\
+Total Global Memory & 15360 MiB (15 GB) \\
+Memory Bandwidth (theoretical) & $\sim$320 GB/s \\
+BAR1 Memory & 256 MiB \\
+ECC Mode & Enabled \\
+Memory Clock (max) & 5001 MHz \\
+Memory Clock (current) & 405 MHz \\
+\\
+\multicolumn{2}{l}{\textit{Compute Performance}} \\
+Peak FP32 Throughput (theoretical) & $\sim$8.1 TFLOP/s \\
+Peak FP64 Throughput (theoretical) & $\sim$0.25 TFLOP/s (254 GFLOP/s) \\
+FP32 to FP64 Ratio & 32:1 \\
+SM Clock (max) & 1590 MHz \\
+SM Clock (current) & 300 MHz \\
+Performance State & P8 (idle during query) \\
+Compute Mode & Default \\
+\\
+\multicolumn{2}{l}{\textit{PCIe and Interconnect}} \\
+PCIe Generation (max) & Gen3 \\
+PCIe Link Width & x16 \\
+Bus ID & 00000000:00:04.0 \\
+\\
+\multicolumn{2}{l}{\textit{Power Characteristics}} \\
+Power Limit & 70 W \\
+Min--Max Power Limit & 60 W -- 70 W \\
+Instantaneous Power (idle) & 10.75 W \\
+\\
+\bottomrule
+\end{tabular}
+\end{table}

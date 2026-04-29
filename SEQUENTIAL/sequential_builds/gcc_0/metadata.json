@@ -1,0 +1,11 @@
+{
+  "compiler": "gcc",
+  "flags_list": [
+    "-fopenmp",
+    "-Wall",
+    "-Wextra",
+    "-O0"
+  ],
+  "target": "executable",
+  "version": "orig"
+}

@@ -1,0 +1,17 @@
+executable,n,real_time_seconds,cpu_time_seconds
+icc_maximum_aligned,256,0.002362,0.002359
+icc_maximum_aligned,512,0.013625,0.013607
+icc_maximum_aligned,1024,0.066289,0.066268
+icc_maximum_aligned,2048,0.600742,0.600637
+icc_maximum_aligned,4096,5.292190,5.291474
+icc_maximum_aligned,5000,6.511007,6.509995
+icc_maximum_aligned,8192,42.874280,42.866701
+icc_maximum_aligned,10000,52.871892,52.864779
+icx_maximum_aligned,256,0.001733,0.001721
+icx_maximum_aligned,512,0.009722,0.009712
+icx_maximum_aligned,1024,0.074844,0.074795
+icx_maximum_aligned,2048,0.537617,0.537536
+icx_maximum_aligned,4096,11.495097,11.493881
+icx_maximum_aligned,5000,5.567249,5.566462
+icx_maximum_aligned,8192,107.467891,107.455677
+icx_maximum_aligned,10000,44.245460,44.239498

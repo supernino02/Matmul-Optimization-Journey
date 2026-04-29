@@ -1,0 +1,16 @@
+executable,returncode,n,threads,real_time_seconds,cpu_time_seconds
+openblas_parallel,0,5000,16,0.658363,8.835567
+openblas_parallel,0,10000,16,4.494942,58.549324
+openblas_parallel,0,15000,16,17.218133,261.551115
+openblas_parallel,0,5000,16,0.656069,8.877612
+openblas_parallel,0,10000,16,4.868513,68.613398
+openblas_parallel,0,15000,16,16.311841,232.695549
+openblas_parallel,0,5000,16,0.661657,9.992512
+openblas_parallel,0,10000,16,4.430000,59.580539
+openblas_parallel,0,15000,16,17.381765,274.761789
+openblas_parallel,0,5000,16,0.665738,9.344533
+openblas_parallel,0,10000,16,4.525575,60.602518
+openblas_parallel,0,15000,16,16.768064,241.403872
+openblas_parallel,0,5000,16,0.670555,10.101029
+openblas_parallel,0,10000,16,5.064808,75.831741
+openblas_parallel,0,15000,16,17.305692,272.694247

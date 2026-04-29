@@ -1,0 +1,268 @@
+\relax 
+\abx@aux@refcontext{none/global//global/global/global}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Problem definition}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Roadmap}{3}{}\protected@file@percent }
+\newlabel{subsec:iterative_improvements}{{1.2}{3}{}{subsection.1.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Experimental Setup}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Hardware Platform}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}CPU Hardware Specifications (University Lab)}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CPU topology (hwloc).}{3}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces CPU hardware specifications of the laboratory workstation.}}{4}{}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:cpu_specs}{{1}{4}{}{table.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}GPU Hardware Specifications (Google Colab)}{4}{}\protected@file@percent }
+\newlabel{sec:GPU spec}{{2.1.2}{4}{}{subsubsection.2.1.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Hardware Profiling}{4}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces GPU hardware specifications of the Google Colab environment.}}{5}{}\protected@file@percent }
+\newlabel{tab:gpu_specs_colab}{{2}{5}{}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Software Environment}{5}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Software environment configuration.}}{6}{}\protected@file@percent }
+\newlabel{tab:software_env}{{3}{6}{}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Benchmarking methodology}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Metrics}{6}{}\protected@file@percent }
+\newlabel{subsubsec:metrics}{{2.3.1}{6}{}{subsubsection.2.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Baseline Implementation}{7}{}\protected@file@percent }
+\newlabel{lst:naive_mm}{{1}{7}{}{lstlisting.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}{\ignorespaces Naive matrix multiplication}}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Sequential Optimization}{8}{}\protected@file@percent }
+\newlabel{sec:sequential}{{3}{8}{}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}ICC Optimization Levels}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interprocedural Optimization.}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}No Optimizations (\texttt  {-O0})}{8}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Execution time scaling as a function of matrix size ($n$) at \texttt  {-O0}.}}{8}{}\protected@file@percent }
+\newlabel{fig:all_o0}{{1}{8}{}{figure.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Performance Scaling.}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Intel Advisor and Roofline Analysis.}{9}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Intel Advisor Roofline analysis for ICC \texttt  {-O0}.}}{9}{}\protected@file@percent }
+\newlabel{fig:icc_o0_roofline}{{2}{9}{}{figure.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Valgrind Cachegrind Analysis.}{9}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Key Valgrind Cachegrind memory profiling metrics for ICC \texttt  {-O0}.}}{9}{}\protected@file@percent }
+\newlabel{tab:cachegrind_results_o0}{{4}{9}{}{table.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Compiler Report.}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Minimal Optimizations (\texttt  {-O1})}{10}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Execution time scaling as a function of matrix size ($n$) at \texttt  {-O1}.}}{10}{}\protected@file@percent }
+\newlabel{fig:all_o1}{{3}{10}{}{figure.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Intel Advisor Analysis.}{10}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Intel Advisor Roofline analysis for ICC \texttt  {-O1}.}}{11}{}\protected@file@percent }
+\newlabel{fig:roofline_o1}{{4}{11}{}{figure.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{valgrind insight}{11}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Key Valgrind Cachegrind memory profiling metrics for ICC \texttt  {-O1} ($n=5000$).}}{11}{}\protected@file@percent }
+\newlabel{tab:cachegrind_results_o1}{{5}{11}{}{table.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Conclusions. }{12}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Standard Optimizations (\texttt  {-O2})}{12}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces All compilers -O2 performances compared to ICC -O1}}{12}{}\protected@file@percent }
+\newlabel{fig:all_o2}{{5}{12}{}{figure.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Roofline model}{12}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Roofline analysis for ICC -O2.}}{13}{}\protected@file@percent }
+\newlabel{fig:icc_o2_roofline}{{6}{13}{}{figure.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Valgrind Cachegrind Analysis.}{13}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Key Valgrind Cachegrind metrics for ICC \texttt  {-O2}.}}{13}{}\protected@file@percent }
+\newlabel{tab:cachegrind_results_o2}{{6}{13}{}{table.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Compiler Report.}{14}{}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}{\ignorespaces Simplified ICC Optimization Report for \texttt  {-O2}.}}{14}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.4}Aggressive Optimizations (\texttt  {-O3})}{14}{}\protected@file@percent }
+\newlabel{subsec:seq_3}{{3.1.4}{14}{}{subsubsection.3.1.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces All compilers -O3 performances compared to ICC -O2}}{14}{}\protected@file@percent }
+\newlabel{fig:all_o3}{{7}{14}{}{figure.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Compiler Optimization Report}{15}{}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3}{\ignorespaces Refactored ICC Optimization Report for \texttt  {-O3}.}}{15}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Intel Advisor Roofline Analysis}{15}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Roofline analysis for ICC \texttt  {-O3}.}}{15}{}\protected@file@percent }
+\newlabel{fig:icc_O3_roofline}{{8}{15}{}{figure.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Valgrind Cachegrind Analysis}{16}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Key Valgrind Cachegrind metrics for ICC \texttt  {-O3}.}}{16}{}\protected@file@percent }
+\newlabel{tab:cachegrind_results_o3}{{7}{16}{}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Compiler(s), to the moon: beyond \texttt  {-O3}}{16}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Advanced compiler optimization flags and their expected effects.}}{17}{}\protected@file@percent }
+\newlabel{tab:advanced_flags}{{8}{17}{}{table.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Refactored Optimization Report.}{17}{}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4}{\ignorespaces Simplified ICC Report:\texttt  {-O3 -xHost}.}}{18}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Intel Advisor Roofline Analysis}{18}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Roofline analysis for ICC \texttt  {-O3 -Xhost etc...}.}}{18}{}\protected@file@percent }
+\newlabel{fig:icc_better_roofline}{{9}{18}{}{figure.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Performance comparison}{19}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Performance comparison of ICC and ICX with the advanced flags.}}{19}{}\protected@file@percent }
+\newlabel{fig:icc_icx_better_comparison}{{10}{19}{}{figure.10}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}A little price to pay for salvation? \texttt  {-DALIGN}}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical Advantages.}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Compilation report}{20}{}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5}{\ignorespaces Optimization report of ICC with \texttt  {-O3 -xHost -DALIGN}.}}{20}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Performance}{20}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Performance comparison of ICC and ICX with the advanced flags and -DALIGN.}}{21}{}\protected@file@percent }
+\newlabel{fig:icc_icx_aligned_comparison}{{11}{21}{}{figure.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Compiler's limitation, and how to bypass them}{21}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Cache Collisions in Matrix Traversal}{21}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Quantitative comparison}{22}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Roofline model of \texttt  {ICX -O3 -xHost -DALIGN} on \texttt  {n=5000} and \texttt  {n=4096}}}{22}{}\protected@file@percent }
+\newlabel{fig:icc_icx_aligned_roofline_comparison}{{12}{22}{}{figure.12}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Cache-Aware Solutions, to Dimension-Dependent Thrashing}{22}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Performance comparison demonstrating the furhter dumping of cache thrashing spikes when $N$ is known at compilation time.}}{23}{}\protected@file@percent }
+\newlabel{tab:results_placeholder}{{9}{23}{}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}BLAS-like implementation}{24}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Kernel $4\times 8$}{24}{}\protected@file@percent }
+\newlabel{blas_like_code}{{6}{24}{}{lstlisting.6}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {6}{\ignorespaces Kernel $4\times 8$ doubles implementation}}{24}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Optimization details}{24}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{AVX Intrinsics Reference}{25}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces AVX2 Intrinsics used in the $4 \times 8$ kernel.}}{25}{}\protected@file@percent }
+\newlabel{tab:avx_intrinsics}{{10}{25}{}{table.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Hyperparameter tuning}{25}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{What is missing from the original}{25}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}Performances evaluation}{26}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Roofline comparison between the original \texttt  {OpenBLAS} (left) and our custom implementation (right).}}{26}{}\protected@file@percent }
+\newlabel{fig:openblas_vs_blas_roofline}{{13}{26}{}{figure.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{Broader comparison}{26}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Performance comparison of the original \texttt  {OpenBLAS} and our custom implementation }}{26}{}\protected@file@percent }
+\newlabel{fig:blas_vs_openblas}{{14}{26}{}{figure.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Final Comparison}{27}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Comparison of all the previously proposed implementations for $N=5000$.}}{27}{}\protected@file@percent }
+\newlabel{fig:all_seq_5000}{{15}{27}{}{figure.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Performance comparison against the Intel MKL baseline.}}{27}{}\protected@file@percent }
+\newlabel{tab:final_mkl_comparison}{{11}{27}{}{table.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}OpenMP}{28}{}\protected@file@percent }
+\newlabel{sec:openmp}{{4}{28}{}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Compiler Directives: \texttt  {Pragmas}}{28}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hyperparameter tuning}{28}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Original implementation}{28}{}\protected@file@percent }
+\newlabel{lst:orig_openmp}{{7}{29}{}{lstlisting.7}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {7}{\ignorespaces Original algorithm with OpenMP directives: the parametrization is managed at runtime.}}{29}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Concurrency}{29}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Hyper-parameter tuning of the naive algorithm on $T$, evaluated on matrix \texttt  {n=5000} }}{29}{}\protected@file@percent }
+\newlabel{fig:orig_tune_t}{{16}{29}{}{figure.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}BLAS-like implementation}{30}{}\protected@file@percent }
+\newlabel{lst:blas_like_openmp}{{8}{30}{}{lstlisting.8}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {8}{\ignorespaces Blas-like implementation with OpenMP directives}}{30}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Concurrency}{31}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Hyper-parameter tuning of the blas-like implementation on $T$, evaluated on matrix \texttt  {n=15000} }}{32}{}\protected@file@percent }
+\newlabel{fig:blas_like_tune_t}{{17}{32}{}{figure.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Roofline analysis of our \texttt  {Blas-Like} implementatation, executed with \texttt  {T=16} on \texttt  {n=15000}}}{32}{}\protected@file@percent }
+\newlabel{fig:blas_intel_advisor}{{18}{32}{}{figure.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Performance comparison of the original \texttt  {OpenBLAS} and our implementation, in function of \texttt  {T} on a matrix \texttt  {n=15000}.}}{33}{}\protected@file@percent }
+\newlabel{fig:blas_comparison_openmp}{{19}{33}{}{figure.19}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Scheduling (and Chunk Size)}{33}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Average execution time across varying chunk sizes and scheduling policies, on a matrix n=15000 and T=16.}}{34}{}\protected@file@percent }
+\newlabel{fig:blas_scheduling}{{20}{34}{}{figure.20}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Affinity}{34}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Execution time varying with each possible mapping setting.}}{35}{}\protected@file@percent }
+\newlabel{fig:blas_affinity}{{21}{35}{}{figure.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Final comparisons}{35}{}\protected@file@percent }
+\newlabel{subsec:openmp_comparisons}{{4.4}{35}{}{subsection.4.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Hyper-parameter tuning of the Intel MKL implementation on $T$, evaluated on matrix \texttt  {n=15000}}}{36}{}\protected@file@percent }
+\newlabel{fig:mkl_tune_t}{{22}{36}{}{figure.22}{}}
+\@writefile{toc}{\contentsline {paragraph}{Results Summary}{36}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Performance comparison of the multithreaded implementations across different matrix sizes. Percentages reflect computational throughput (GFLOPS) relative to the Intel MKL baseline. Notably, our version outperform OpenBLAS on bigger matrices.}}{36}{}\protected@file@percent }
+\newlabel{tab:final_openmp_comparison}{{12}{36}{}{table.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}CUDA}{37}{}\protected@file@percent }
+\newlabel{sec:CUDA}{{5}{37}{}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{CUDA Hierarchy and Execution Model}{37}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Kernel execution}{37}{}\protected@file@percent }
+\newlabel{lst:cuda_launch_kernel}{{9}{37}{}{lstlisting.9}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {9}{\ignorespaces Example code to launch the Naive Kernel: the block's sizes can be defined at runtime.}}{37}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experimental methodology}{37}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Kernel 1: Naive Implementation}{38}{}\protected@file@percent }
+\newlabel{lst:cuda_naive_kernel}{{10}{38}{}{lstlisting.10}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {10}{\ignorespaces Naive CUDA matrix multiplication kernel}}{38}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces HeatMap of hyper-parameter tuning on a matrix $n = 15000$}}{38}{}\protected@file@percent }
+\newlabel{fig:orig_tune_t}{{23}{38}{}{figure.23}{}}
+\@writefile{toc}{\contentsline {paragraph}{Performance Analysis}{38}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Best possible performance of the naive kernel (8x32 and 16x16)}}{39}{}\protected@file@percent }
+\newlabel{tab:optimal_blocks_perf}{{13}{39}{}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Worst possible performance of the naive kernel (2x2)}}{39}{}\protected@file@percent }
+\newlabel{tab:worst_perf}{{14}{39}{}{table.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Observation :}{39}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Kernel Register Pressure}{39}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{NvProf Analysis}{40}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Nvprof Analysis for Naive Kernel with block 16x16}}{40}{}\protected@file@percent }
+\newlabel{tab:nvprof_memory_sync}{{15}{40}{}{table.15}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations and Resume}{40}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Kernel 2: Tiling}{41}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Kernel Call}{41}{}\protected@file@percent }
+\newlabel{lst:cuda_coalesced_kernel}{{11}{41}{}{lstlisting.11}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {11}{\ignorespaces Code to launch Kernel 2}}{41}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Kernel Code}{41}{}\protected@file@percent }
+\newlabel{lst:Kernel_2_code}{{12}{41}{}{lstlisting.12}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {12}{\ignorespaces CUDA implementation of Kernel 2}}{41}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Performance Analysis}{42}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Kernel Performance using 32 x 32}}{42}{}\protected@file@percent }
+\newlabel{tab:kernel2_15000}{{16}{42}{}{table.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Kernel Performance using 16 x 16}}{43}{}\protected@file@percent }
+\newlabel{tab:kernel_16x16}{{17}{43}{}{table.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Kernel Performance using 16 x 16 (Repeated)}}{43}{}\protected@file@percent }
+\newlabel{tab:kernel_16x16_final}{{18}{43}{}{table.18}{}}
+\@writefile{toc}{\contentsline {paragraph}{Note: Cloud Execution Variance}{43}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Kernel Register Pressure}{43}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Nvprof Analysis}{44}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Nvprof Analysis of Kernel 2}}{44}{}\protected@file@percent }
+\newlabel{tab:nvprof_analysis_updated}{{19}{44}{}{table.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Final Comparison}{44}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces CUDA Kernel's performance comparison. Percentages reflect computational throughput (GFLOPS) relative to the cuBLAS baseline.}}{44}{}\protected@file@percent }
+\newlabel{tab:final_cublas_comparison_selected}{{20}{44}{}{table.20}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}MPI}{46}{}\protected@file@percent }
+\newlabel{sec:mpi}{{6}{46}{}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Implementation Strategy}{46}{}\protected@file@percent }
+\newlabel{lst:mpi_kernel}{{13}{46}{}{lstlisting.13}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {13}{\ignorespaces Optimized kernel i-k-j executed by each MPI process.}}{46}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Performance and Scalability Analysis}{46}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Execution time compared to number of processes.}}{46}{}\protected@file@percent }
+\newlabel{fig:mpi_execution_time}{{24}{46}{}{figure.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces Execution time compared to problem size $N$ (Log-Log Scale).}}{47}{}\protected@file@percent }
+\newlabel{fig:mpi_time_vs_n}{{25}{47}{}{figure.25}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Speedup and Efficiency}{47}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces Speedup compared to number of processes.}}{48}{}\protected@file@percent }
+\newlabel{fig:mpi_speedup}{{26}{48}{}{figure.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces Efficiency compared to number of processes.}}{48}{}\protected@file@percent }
+\newlabel{fig:mpi_efficiency}{{27}{48}{}{figure.27}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces Efficiency Heatmap mapping the relationship between $N$ and $p$.}}{49}{}\protected@file@percent }
+\newlabel{fig:mpi_heatmap}{{28}{49}{}{figure.28}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Advanced Throughput and Bottleneck Analysis}{49}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {29}{\ignorespaces Computational Throughput (GFLOPS) across different process configurations.}}{49}{}\protected@file@percent }
+\newlabel{fig:mpi_gflops}{{29}{49}{}{figure.29}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Complete MPI benchmark results: average execution time (s) across different configurations of processes ($p$) and matrix dimensions ($N$). Note the Out of Memory (OOM) failure for $N=15000$ at $p=32$.}}{50}{}\protected@file@percent }
+\newlabel{tab:mpi_final_raw}{{21}{50}{}{table.21}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Final Comparison}{51}{}\protected@file@percent }
+\newlabel{sec:results}{{7}{51}{}{section.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Integral performance summary of all implementations across matrix dimensions $N=5000$, $10000$, and $15000$. Percentages reflect computational throughput (GFLOPS) relative to the best measured baseline: Intel MKL (OpenMP, $T=16$).}}{51}{}\protected@file@percent }
+\newlabel{table:results}{{22}{51}{}{table.22}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Sequential Algorithms}{52}{}\protected@file@percent }
+\newlabel{app:algorithms}{{A}{52}{}{section.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Naive Approach: $i-j-k$}{52}{}\protected@file@percent }
+\newlabel{subsec:ijk}{{A.1}{52}{}{subsection.1.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Standard Approach: $i-k-j$}{52}{}\protected@file@percent }
+\newlabel{subsec:ikj}{{A.2}{52}{}{subsection.1.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Better Approach: Tiling (Blocking)}{52}{}\protected@file@percent }
+\newlabel{subsec:tiling}{{A.3}{52}{}{subsection.1.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {30}{\ignorespaces Loop decomposition to allow for Explicit Tiling}}{53}{}\protected@file@percent }
+\newlabel{fig:tiling_image}{{30}{53}{}{figure.30}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Best implementation: \texttt  {OpenBlas} }{53}{}\protected@file@percent }
+\newlabel{subsec:openblas}{{A.4}{53}{}{subsection.1.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {31}{\ignorespaces Schematic Blueprint of the OpenBlas approach}}{54}{}\protected@file@percent }
+\newlabel{fig:blas}{{31}{54}{}{figure.31}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.4.1}Memory Packing (Macro-Kernel Logic)}{54}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {A.4.2}Micro-Kernel}{55}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}Cache-aware Optimizations and Details}{56}{}\protected@file@percent }
+\newlabel{app:caching}{{B}{56}{}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.1}Associative caches Implementation and Limitations}{56}{}\protected@file@percent }
+\newlabel{subsec:caching}{{B.1}{56}{}{subsection.2.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{K-associativity}{56}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {B.1.1}Memory Address Partitioning}{56}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Address partitioning across different cache levels based on the specific CPU topology.}}{56}{}\protected@file@percent }
+\newlabel{tab:cache_partitioning}{{23}{56}{}{table.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.2}Unroll and Jam}{57}{}\protected@file@percent }
+\newlabel{subsec:unroll_jam}{{B.2}{57}{}{subsection.2.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {14}{\ignorespaces Original for loops}}{57}{}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {15}{\ignorespaces Loop unrolled (factor of $4$)}}{57}{}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {16}{\ignorespaces Loop unrolled (factor of $4$) and jammed}}{57}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.3}Mathematical Equivalence of Zero Padding}{58}{}\protected@file@percent }
+\newlabel{subsec:padding}{{B.3}{58}{}{subsection.2.3}{}}
+\abx@aux@nociteall
+\newlabel{LastPage}{{7}{59}{}{subsection.2.3}{}}
+\gdef\lastpage@lastpage{59}
+\gdef\lastpage@lastpageHy{}
+\abx@aux@read@bbl@mdfivesum{755969E7ED9118AC06A6429810F43CD2}
+\abx@aux@defaultrefcontext{0}{boehm2022cuda}{none/global//global/global/global}
+\abx@aux@defaultrefcontext{0}{boehm2022fast}{none/global//global/global/global}
+\abx@aux@defaultrefcontext{0}{salykova2025advanced}{none/global//global/global/global}
+\abx@aux@defaultrefcontext{0}{pitr2025optimizing}{none/global//global/global/global}
+\abx@aux@defaultrefcontext{0}{intel2026advisor}{none/global//global/global/global}
+\gdef \@abspage@last{59}

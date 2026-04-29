@@ -1,0 +1,40 @@
+
+
+LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(19,5) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+   remark #25236: Loop with pragma of trip count = 5000 ignored for large value
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(20,9) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+      remark #25236: Loop with pragma of trip count = 5000 ignored for large value
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(21,13) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+      <Peeled loop for vectorization>
+         remark #25015: Estimate of max trip count of loop=1
+      LOOP END
+
+      LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(21,13) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+         remark #15388: vectorization support: reference matrix[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(22,17) ]
+         remark #15388: vectorization support: reference matrix[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(22,17) ]
+         remark #15388: vectorization support: reference matrix[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(22,38) ]
+         remark #15305: vectorization support: vector length 2
+         remark #15399: vectorization support: unroll factor set to 4
+         remark #15309: vectorization support: normalized vectorization overhead 0.500
+         remark #15300: LOOP WAS VECTORIZED
+      LOOP END
+
+      LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(21,13) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+      <Alternate Alignment Vectorized Loop>
+      LOOP END
+
+      LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(21,13) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+      <Remainder loop for vectorization>
+         remark #15388: vectorization support: reference matrix[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(22,17) ]
+         remark #15388: vectorization support: reference matrix[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(22,17) ]
+         remark #15389: vectorization support: reference matrix[k][j] has unaligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(22,38) ]
+         remark #15381: vectorization support: unaligned access used inside loop body
+         remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+      LOOP END
+   LOOP END
+LOOP END
+

@@ -1,0 +1,19 @@
+\begin{table}[H]
+\centering
+\caption{Key Valgrind Cachegrind memory profiling metrics for ICC \texttt{-O1} ($n=5000$).}
+\label{tab:cachegrind_results_o1}
+\begin{tabular}{lr}
+\toprule
+\textbf{Metric} & \textbf{Total Count / Rate} \\
+\midrule
+Instruction References (I) & 875,303,318,749 \\
+Data References (D)        & 375,101,183,650 \\
+\midrule
+L1 Data Misses             & 31,309,389,456 \\
+L1 Data Miss Rate          & 8.3\% (\textbf{12.5\% Read}) \\
+\midrule
+Last-Level (LL) Misses     & \textbf{15,640,645,313} \\
+Last-Level (LL) Miss Rate  & 1.3\% (6.3\% Read) \\
+\bottomrule
+\end{tabular}
+\end{table}

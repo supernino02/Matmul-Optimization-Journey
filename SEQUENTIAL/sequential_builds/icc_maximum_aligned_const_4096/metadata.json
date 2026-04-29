@@ -1,0 +1,21 @@
+{
+  "compiler": "icc",
+  "flags_list": [
+    "-fopenmp",
+    "-Wall",
+    "-Wextra",
+    "-diag-disable=10441",
+    "-xHost",
+    "-O3",
+    "-ipo",
+    "-fp-model",
+    "fast=2",
+    "-inline-level=2",
+    "-unroll-aggressive",
+    "-unroll=4",
+    "-DALIGN",
+    "-DN_CONST=4096"
+  ],
+  "target": "executable",
+  "version": "orig"
+}

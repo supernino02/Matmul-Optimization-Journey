@@ -1,0 +1,150 @@
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+Function:        multiply_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            zext
+    DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+Function:        multiply_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+Function:        multiply_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+Function:        multiply_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            zext
+    DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+Function:        multiply_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+Function:        multiply_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            load
+    DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 38 }
+Function:        multiply_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 38 }
+Function:        multiply_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 38 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 17 }
+Function:        multiply_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/versions/orig.c', Line: 21, Column: 31 }
+Function:        multiply_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: 'src/versions/orig.c', Line: 21, Column: 31 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+Function:        multiply_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            zext
+    DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+Function:        multiply_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+Function:        multiply_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 28 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 17 }
+Function:        multiply_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: 'src/versions/orig.c', Line: 22, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/versions/orig.c', Line: 20, Column: 27 }
+Function:        multiply_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: 'src/versions/orig.c', Line: 20, Column: 27 }
+...

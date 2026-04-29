@@ -1,0 +1,87 @@
+\section{OpenMP}\label{sec:openmp}
+
+In the preceding sections, we established the maximum practical peak performance achievable through sequential execution on a single core. Proceeding with the iterative optimization strategy proposed in Section~\ref{sec:sequential}, we now exploit the shared-resources paradigm by utilizing OpenMP. 
+
+This approach allows us to further increase the computational throughput by distributing the workload across logical threads mapped to physical cores in the CPU (details in  \ref{tab:cpu_specs}).
+
+We begin by applying basic multi-threading to the original baseline implementation to observe the initial parallel scaling behavior. Subsequently, we explore the parallelization of our custom \textbf{BLAS-like} implementation, examining the impact of thread distribution, hardware binding, and scheduling strategies. 
+
+Lastly, we evaluate our optimized multi-threaded implementations against state-of-the-art libraries (alredy evaluated in single-thread mode) \textbf{multi-threaded OpenBLAS} and the \textbf{Intel Math Kernel Library (MKL)}.
+
+\subsection {Compiler Directives: \texttt{Pragmas}} 
+In particular, we leverage OpenMP by explicitly guiding the compiler through standardized \texttt{\#pragma} directives. These hints allow us to dictate thread creation, work distribution, and low-level execution policies without altering the underlying sequential algorithm:
+
+\begin{itemize}
+    \item \textbf{\texttt{\#pragma omp parallel}:} Initiates a parallel region, instructing the compiler to fork a team of threads to execute the enclosed block of code concurrently.
+    
+    \item \textbf{\texttt{\#pragma omp for}:} A work-sharing construct that partitions the iterations of the immediately following loop, distributing the workload among the active thread \emph{team}; we will use it directly merged 
+    with the previous directive in a single directive (\texttt{\#pragma omp parallel for}).
+    
+    \item \textbf{\texttt{schedule(type, chunk\_size)}:} Used to explicitly define how loop iterations are mapped to threads. We will manually tune the schedule type (\texttt{static}, \texttt{dynamic}) and the block size, to find empirically the optimal workload distribution between threads and cores.
+\end{itemize}
+
+\paragraph{Hyperparameter tuning}
+
+Maintaining the experimental methodology established in previous sections, the execution environment is parameterized at runtime via command-line arguments $$ \texttt{--threads T} \qquad \texttt{--schedule S} \qquad \texttt{--block-size B} $$
+
+This flexibility allows for a empirical investigation of parallel tuning and scalability. In the following sections, we analyze these results to address three fundamental questions:
+
+\begin{itemize}
+\item \textbf{Concurrency}: What is the saturation point where increasing the thread count ceases to improve GFLOPS?
+\item \textbf{Scheduling}: Do the scheduling policy (along with the chunk size) impact the performance gain?
+\item \textbf{Affinity}: Can we further optimize the performances by explicitly binding threads to physical cores to minimize cache-coherency traffic?
+\end{itemize}
+
+\input{Sections/openmp/original}
+
+\input{Sections/openmp/blas_like}
+
+
+\subsection{Final comparisons}
+\label{subsec:openmp_comparisons}
+
+For completeness, we evaluate the performance scaling of the algorithms provided by \texttt{Intel MKL} (Figure~\ref{fig:mkl_tune_t}). Since the library natively manages multithreading, the thread count only needs to be defined dynamically at runtime using its API call \texttt{mkl\_set\_num\_threads(n\_threads)}.
+
+The scaling curves exhibit a clear jagged pattern. This fluctuating behavior is typical of highly optimized libraries like MKL (indeed, it is also present in OpenBLAS, as seen in Figure~\ref{fig:blas_comparison_openmp}). As previously discussed, further speculations regarding these fluctuations is omitted, as they cannot be empirically verified.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Images/mkl_t_tuning.png}
+    \caption{Hyper-parameter tuning of the Intel MKL implementation on $T$, evaluated on matrix \texttt{n=15000}}
+    \label{fig:mkl_tune_t}
+\end{figure}
+
+
+\paragraph{Results Summary}
+To summarize the iterative parallel optimization pipeline and contextualize our custom implementations against state-of-the-art libraries, Table~\ref{tab:final_openmp_comparison} aggregates the performance metrics of each major milestone across different matrix sizes.
+
+\begin{table}[H]
+\centering
+% The resizebox must wrap the ENTIRE threeparttable
+\resizebox{\textwidth}{!}{%
+  \begin{threeparttable}
+    \caption{Performance comparison of the multithreaded implementations across different matrix sizes. Percentages reflect computational throughput (GFLOPS) relative to the Intel MKL baseline. Notably, our version outperform OpenBLAS on bigger matrices.}
+    \label{tab:final_openmp_comparison}
+    
+    \begin{tabular}{l|ccc|ccc|ccc}
+    \toprule
+     & \multicolumn{3}{c|}{\textbf{N = 5000}} & \multicolumn{3}{c|}{\textbf{N = 10000}} & \multicolumn{3}{c}{\textbf{N = 15000}} \\
+    \textbf{Implementation} & \textbf{Time (s)} & \textbf{GFLOPS} & \textbf{\%} & \textbf{Time (s)} & \textbf{GFLOPS} & \textbf{\%} & \textbf{Time (s)} & \textbf{GFLOPS} & \textbf{\%} \\
+    \midrule
+    Original ($T=24$)                       & 5.360 & 46.65 & 10.01\% & 43.087 & 46.42 & 8.95\% & 149.783 & 45.07 & 8.63\% \\
+    Blas-Like ($T=16$, default)             & 0.837 & 298.62 & 64.11\% & 5.789 & 345.47 & 66.62\% & 16.752 & 402.93 & 77.15\% \\
+    Blas-Like ($T=16$, dynamic, 1)          & 0.804 & 310.97 & 66.76\% & 4.977 & 401.82 & 77.49\% & 15.571 & 433.49 & 83.00\% \\
+    \textbf{Blas-Like (Optimal)}\tnote{1}   & \textbf{0.882} & \textbf{283.32} & \textbf{60.83\%} & \textbf{4.906} & \textbf{407.67} & \textbf{78.61\%} & \textbf{15.571} & \textbf{433.50} & \textbf{83.01\%} \\
+    \midrule
+    OpenBLAS ($T=16$)                                & 0.662 & 377.37 & 81.02\% & 4.677 & 427.65 & 82.47\% & 16.997 & 397.13 & 76.04\% \\
+    \textbf{Intel MKL ($T=16$)}                      & \textbf{0.537} & \textbf{465.77} & \textbf{100.00\%} & \textbf{3.857} & \textbf{518.57} & \textbf{100.00\%} & \textbf{12.925} & \textbf{522.24} & \textbf{100.00\%} \\
+    \bottomrule
+    \end{tabular}
+    
+    \begin{tablenotes}
+        \footnotesize
+        \item[1] Evaluated with tuned affinity settings: \texttt{OMP\_PROC\_BIND=close, OMP\_PLACES=sockets}.
+    \end{tablenotes}
+  \end{threeparttable}%
+}
+\end{table}

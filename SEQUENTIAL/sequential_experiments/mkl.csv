@@ -1,0 +1,4 @@
+executable,n,real_time_seconds,cpu_time_seconds
+mkl_seq,5000,4.020009,4.019590
+mkl_seq,10000,32.076521,32.073202
+mkl_seq,15000,108.029442,108.017934

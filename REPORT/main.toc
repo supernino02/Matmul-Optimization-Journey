@@ -1,0 +1,102 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{}%
+\contentsline {subsection}{\numberline {1.1}Problem definition}{2}{}%
+\contentsline {subsection}{\numberline {1.2}Roadmap}{3}{}%
+\contentsline {section}{\numberline {2}Experimental Setup}{3}{}%
+\contentsline {subsection}{\numberline {2.1}Hardware Platform}{3}{}%
+\contentsline {subsubsection}{\numberline {2.1.1}CPU Hardware Specifications (University Lab)}{3}{}%
+\contentsline {paragraph}{CPU topology (hwloc).}{3}{}%
+\contentsline {subsubsection}{\numberline {2.1.2}GPU Hardware Specifications (Google Colab)}{4}{}%
+\contentsline {paragraph}{Hardware Profiling}{4}{}%
+\contentsline {subsection}{\numberline {2.2}Software Environment}{5}{}%
+\contentsline {subsection}{\numberline {2.3}Benchmarking methodology}{6}{}%
+\contentsline {subsubsection}{\numberline {2.3.1}Metrics}{6}{}%
+\contentsline {subsection}{\numberline {2.4}Baseline Implementation}{7}{}%
+\contentsline {section}{\numberline {3}Sequential Optimization}{8}{}%
+\contentsline {subsection}{\numberline {3.1}ICC Optimization Levels}{8}{}%
+\contentsline {paragraph}{Interprocedural Optimization.}{8}{}%
+\contentsline {subsubsection}{\numberline {3.1.1}No Optimizations (\texttt {-O0})}{8}{}%
+\contentsline {paragraph}{Performance Scaling.}{8}{}%
+\contentsline {paragraph}{Intel Advisor and Roofline Analysis.}{9}{}%
+\contentsline {paragraph}{Valgrind Cachegrind Analysis.}{9}{}%
+\contentsline {paragraph}{Compiler Report.}{10}{}%
+\contentsline {subsubsection}{\numberline {3.1.2}Minimal Optimizations (\texttt {-O1})}{10}{}%
+\contentsline {paragraph}{Intel Advisor Analysis.}{10}{}%
+\contentsline {paragraph}{valgrind insight}{11}{}%
+\contentsline {paragraph}{Conclusions. }{12}{}%
+\contentsline {subsubsection}{\numberline {3.1.3}Standard Optimizations (\texttt {-O2})}{12}{}%
+\contentsline {paragraph}{Roofline model}{12}{}%
+\contentsline {paragraph}{Valgrind Cachegrind Analysis.}{13}{}%
+\contentsline {paragraph}{Compiler Report.}{14}{}%
+\contentsline {subsubsection}{\numberline {3.1.4}Aggressive Optimizations (\texttt {-O3})}{14}{}%
+\contentsline {paragraph}{Compiler Optimization Report}{15}{}%
+\contentsline {paragraph}{Intel Advisor Roofline Analysis}{15}{}%
+\contentsline {paragraph}{Valgrind Cachegrind Analysis}{16}{}%
+\contentsline {subsection}{\numberline {3.2}Compiler(s), to the moon: beyond \texttt {-O3}}{16}{}%
+\contentsline {paragraph}{Refactored Optimization Report.}{17}{}%
+\contentsline {paragraph}{Intel Advisor Roofline Analysis}{18}{}%
+\contentsline {paragraph}{Performance comparison}{19}{}%
+\contentsline {subsubsection}{\numberline {3.2.1}A little price to pay for salvation? \texttt {-DALIGN}}{19}{}%
+\contentsline {paragraph}{Practical Advantages.}{19}{}%
+\contentsline {paragraph}{Compilation report}{20}{}%
+\contentsline {paragraph}{Performance}{20}{}%
+\contentsline {subsection}{\numberline {3.3}Compiler's limitation, and how to bypass them}{21}{}%
+\contentsline {subsubsection}{\numberline {3.3.1}Cache Collisions in Matrix Traversal}{21}{}%
+\contentsline {paragraph}{Quantitative comparison}{22}{}%
+\contentsline {subsubsection}{\numberline {3.3.2}Cache-Aware Solutions, to Dimension-Dependent Thrashing}{22}{}%
+\contentsline {subsection}{\numberline {3.4}BLAS-like implementation}{24}{}%
+\contentsline {subsubsection}{\numberline {3.4.1}Kernel $4\times 8$}{24}{}%
+\contentsline {paragraph}{Optimization details}{24}{}%
+\contentsline {paragraph}{AVX Intrinsics Reference}{25}{}%
+\contentsline {paragraph}{Hyperparameter tuning}{25}{}%
+\contentsline {paragraph}{What is missing from the original}{25}{}%
+\contentsline {subsubsection}{\numberline {3.4.2}Performances evaluation}{26}{}%
+\contentsline {paragraph}{Broader comparison}{26}{}%
+\contentsline {subsection}{\numberline {3.5}Final Comparison}{27}{}%
+\contentsline {section}{\numberline {4}OpenMP}{28}{}%
+\contentsline {subsection}{\numberline {4.1}Compiler Directives: \texttt {Pragmas}}{28}{}%
+\contentsline {paragraph}{Hyperparameter tuning}{28}{}%
+\contentsline {subsection}{\numberline {4.2}Original implementation}{28}{}%
+\contentsline {subsubsection}{\numberline {4.2.1}Concurrency}{29}{}%
+\contentsline {subsection}{\numberline {4.3}BLAS-like implementation}{30}{}%
+\contentsline {subsubsection}{\numberline {4.3.1}Concurrency}{31}{}%
+\contentsline {subsubsection}{\numberline {4.3.2}Scheduling (and Chunk Size)}{33}{}%
+\contentsline {subsubsection}{\numberline {4.3.3}Affinity}{34}{}%
+\contentsline {subsection}{\numberline {4.4}Final comparisons}{35}{}%
+\contentsline {paragraph}{Results Summary}{36}{}%
+\contentsline {section}{\numberline {5}CUDA}{37}{}%
+\contentsline {paragraph}{CUDA Hierarchy and Execution Model}{37}{}%
+\contentsline {paragraph}{Kernel execution}{37}{}%
+\contentsline {paragraph}{Experimental methodology}{37}{}%
+\contentsline {subsection}{\numberline {5.1}Kernel 1: Naive Implementation}{38}{}%
+\contentsline {paragraph}{Performance Analysis}{38}{}%
+\contentsline {paragraph}{Observation :}{39}{}%
+\contentsline {paragraph}{Kernel Register Pressure}{39}{}%
+\contentsline {paragraph}{NvProf Analysis}{40}{}%
+\contentsline {paragraph}{Limitations and Resume}{40}{}%
+\contentsline {subsection}{\numberline {5.2}Kernel 2: Tiling}{41}{}%
+\contentsline {paragraph}{Kernel Call}{41}{}%
+\contentsline {paragraph}{Kernel Code}{41}{}%
+\contentsline {paragraph}{Performance Analysis}{42}{}%
+\contentsline {paragraph}{Note: Cloud Execution Variance}{43}{}%
+\contentsline {paragraph}{Kernel Register Pressure}{43}{}%
+\contentsline {paragraph}{Nvprof Analysis}{44}{}%
+\contentsline {subsection}{\numberline {5.3}Final Comparison}{44}{}%
+\contentsline {section}{\numberline {6}MPI}{46}{}%
+\contentsline {subsection}{\numberline {6.1}Implementation Strategy}{46}{}%
+\contentsline {subsection}{\numberline {6.2}Performance and Scalability Analysis}{46}{}%
+\contentsline {subsection}{\numberline {6.3}Speedup and Efficiency}{47}{}%
+\contentsline {subsection}{\numberline {6.4}Advanced Throughput and Bottleneck Analysis}{49}{}%
+\contentsline {section}{\numberline {7}Final Comparison}{51}{}%
+\contentsline {section}{\numberline {A}Sequential Algorithms}{52}{}%
+\contentsline {subsection}{\numberline {A.1}Naive Approach: $i-j-k$}{52}{}%
+\contentsline {subsection}{\numberline {A.2}Standard Approach: $i-k-j$}{52}{}%
+\contentsline {subsection}{\numberline {A.3}Better Approach: Tiling (Blocking)}{52}{}%
+\contentsline {subsection}{\numberline {A.4}Best implementation: \texttt {OpenBlas} }{53}{}%
+\contentsline {subsubsection}{\numberline {A.4.1}Memory Packing (Macro-Kernel Logic)}{54}{}%
+\contentsline {subsubsection}{\numberline {A.4.2}Micro-Kernel}{55}{}%
+\contentsline {section}{\numberline {B}Cache-aware Optimizations and Details}{56}{}%
+\contentsline {subsection}{\numberline {B.1}Associative caches Implementation and Limitations}{56}{}%
+\contentsline {paragraph}{K-associativity}{56}{}%
+\contentsline {subsubsection}{\numberline {B.1.1}Memory Address Partitioning}{56}{}%
+\contentsline {subsection}{\numberline {B.2}Unroll and Jam}{57}{}%
+\contentsline {subsection}{\numberline {B.3}Mathematical Equivalence of Zero Padding}{58}{}%

@@ -1,0 +1,20 @@
+{
+  "compiler": "icc",
+  "flags_list": [
+    "-fopenmp",
+    "-Wall",
+    "-Wextra",
+    "-diag-disable=10441",
+    "-DPARALLEL",
+    "-DALIGN",
+    "-O3",
+    "-ipo",
+    "-xhost",
+    "-inline-level=2",
+    "-unroll-aggressive",
+    "-unroll=4",
+    "-I/opt/intel/oneapi/mkl/latest/include"
+  ],
+  "target": "executable",
+  "version": "mkl"
+}

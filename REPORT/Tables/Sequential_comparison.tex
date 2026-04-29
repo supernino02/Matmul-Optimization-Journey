@@ -1,0 +1,33 @@
+\begin{table}[H]
+\centering
+% The resizebox must wrap the ENTIRE threeparttable
+\resizebox{\textwidth}{!}{%
+  \begin{threeparttable}
+    \caption{Performance comparison against the Intel MKL baseline.}
+    \label{tab:final_mkl_comparison}
+    
+    \begin{tabular}{l|ccc|ccc|ccc}
+    \toprule
+     & \multicolumn{3}{c|}{\textbf{N = 5000}} & \multicolumn{3}{c|}{\textbf{N = 10000}} & \multicolumn{3}{c}{\textbf{N = 15000}} \\
+    \textbf{Implementation} & \textbf{Time (s)} & \textbf{GFLOPS} & \textbf{\%} & \textbf{Time (s)} & \textbf{GFLOPS} & \textbf{\%} & \textbf{Time (s)} & \textbf{GFLOPS} & \textbf{\%} \\
+    \midrule
+    ICC \texttt{-O0}                 & 388.781 & 0.64  & 1.03\%  & 3028.552 & 0.66  & 1.06\%  & - & - & - \\
+    ICC \texttt{-O1}                 & 69.403  & 3.60  & 5.79\%  & 525.154  & 3.81  & 6.11\%  & - & - & - \\
+    ICC \texttt{-O2}                 & 50.030  & 5.00  & 8.04\%  & 401.861  & 4.98  & 7.98\%  & - & - & - \\
+    ICC \texttt{-O3}                 & 18.258  & 13.69 & 22.02\% & 196.361  & 10.19 & 16.34\% & - & - & - \\
+    ICC \texttt{-O3 -xHost}\tnote{1}          & 9.901   & 25.25 & 40.60\% & 70.019   & 28.56 & 45.81\% & 275.428 & 24.51 & 39.22\% \\
+    ICC \texttt{-O3 -xHost}\tnote{1}  \texttt{-DALIGN} & 6.511   & 38.40 & 61.74\% & 52.206   & 38.31 & 61.44\% & 175.374 & 38.49 & 61.59\% \\
+    \textbf{Custom OpenBLAS}         & \textbf{4.556}  & \textbf{54.87} & \textbf{88.24\%} & \textbf{36.864}   & \textbf{54.25} & \textbf{87.01\%} & \textbf{123.927} & \textbf{54.47} & \textbf{87.16\%} \\
+    OpenBLAS                         & 4.406   & 56.74 & 91.24\% & 32.458   & 61.62 & 98.82\% & 109.035 & 61.91 & 99.07\% \\
+    \midrule
+    \textbf{Intel MKL (SOTA)}   & \textbf{4.020} & \textbf{62.19} & \textbf{100.00\%} & \textbf{32.076} & \textbf{62.35} & \textbf{100.00\%} & \textbf{108.02} & \textbf{62.49} & \textbf{100.00\%} \\
+    \bottomrule
+    \end{tabular}
+    
+    \begin{tablenotes}
+        \footnotesize
+        \item[1] Actually were also used \texttt{-ipo}, \texttt{-fp-model}, \texttt{fast=2}, \texttt{-fno-alias}, \texttt{-inline-level=2}, \texttt{-unroll-aggressive}, \texttt{-unroll=4}, as explained in Table~\ref{tab:advanced_flags}.
+    \end{tablenotes}
+  \end{threeparttable}%
+}
+\end{table}

@@ -1,0 +1,4 @@
+executable,returncode,n,threads,schedule,block_size,real_time_seconds,cpu_time_seconds
+blas_like_openmp,0,15000,16,1,16,66.996530,126.037932
+blas_like_openmp,0,15000,16,1,32,119.817379,122.844462
+blas_like_openmp,0,15000,16,1,64,119.029044,122.066281

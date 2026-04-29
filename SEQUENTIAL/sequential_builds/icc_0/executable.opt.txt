@@ -1,0 +1,7 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.10.0 Build 20230609_000000
+
+Compiler options: -I/VM/stud/S5312342/Downloads/HPC/src -fopenmp -Wall -Wextra -diag-disable=10441 -O0 -o /VM/stud/S5312342/Downloads/HPC/builds/icc_0/executable -qopt-report=5 -qopt-report-phase=vec,loop -qopt-report-file=/VM/stud/S5312342/Downloads/HPC/builds/icc_0/executable.opt.txt

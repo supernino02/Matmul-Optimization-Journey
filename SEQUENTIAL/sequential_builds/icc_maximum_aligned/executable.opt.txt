@@ -1,0 +1,440 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.10.0 Build 20230609_000000
+
+Compiler options: -I/VM/stud/S5312342/Downloads/HPC/src -fopenmp -Wall -Wextra -diag-disable=10441 -xHost -O3 -ipo -fp-model fast=2 -fno-alias -inline-level=2 -unroll-aggressive -unroll=4 -DALIGN -o /VM/stud/S5312342/Downloads/HPC/builds/icc_maximum_aligned/executable -qopt-report=5 -qopt-report-phase=vec,loop -qopt-report-file=/VM/stud/S5312342/Downloads/HPC/builds/icc_maximum_aligned/executable.opt.txt
+
+Begin optimization report for: main(int, char **)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(74,5) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(20,17)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(76,9) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(61,5) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(30,30)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(63,9) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(88,5) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(31,28)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(90,9) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(74,5) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(32,28)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(76,9) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(74,5) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(35,29)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(76,9) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(74,5) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(36,27)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(76,9) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(74,5) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(37,27)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(76,9) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(74,5) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(38,27)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(76,9) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(35,5) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(43,5)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(36,9) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(46,9) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(43,5)
+   remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /VM/stud/S5312342/Downloads/HPC/src/arg_parser.c(48,17) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(8,5) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(8,5) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(8,5) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+         remark #15542: loop was not vectorized: inner loop was already vectorized
+
+         LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(8,5) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+            remark #25442: blocked by 125   (pre-vector) 
+            remark #25440: unrolled and jammed by 4   (pre-vector) 
+            remark #15542: loop was not vectorized: inner loop was already vectorized
+            remark #25015: Estimate of max trip count of loop=125
+
+            LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(9,9) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+               remark #25442: blocked by 125   (pre-vector) 
+               remark #25440: unrolled and jammed by 4   (pre-vector) 
+               remark #15542: loop was not vectorized: inner loop was already vectorized
+               remark #25015: Estimate of max trip count of loop=125
+
+               LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(10,13) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+                  remark #25442: blocked by 128   (pre-vector) 
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15305: vectorization support: vector length 4
+                  remark #15399: vectorization support: unroll factor set to 4
+                  remark #15309: vectorization support: normalized vectorization overhead 0.036
+                  remark #15300: LOOP WAS VECTORIZED
+                  remark #15448: unmasked aligned unit stride loads: 29 
+                  remark #15449: unmasked aligned unit stride stores: 16 
+                  remark #15475: --- begin vector cost summary ---
+                  remark #15476: scalar cost: 133 
+                  remark #15477: vector cost: 28.000 
+                  remark #15478: estimated potential speedup: 4.720 
+                  remark #15488: --- end vector cost summary ---
+                  remark #25456: Number of Array Refs Scalar Replaced In Loop: 144
+                  remark #25015: Estimate of max trip count of loop=8
+               LOOP END
+
+               LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(10,13) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+               <Remainder loop for vectorization>
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15305: vectorization support: vector length 4
+                  remark #15309: vectorization support: normalized vectorization overhead 0.232
+                  remark #15301: REMAINDER LOOP WAS VECTORIZED
+                  remark #15448: unmasked aligned unit stride loads: 2 
+                  remark #15449: unmasked aligned unit stride stores: 1 
+                  remark #15475: --- begin vector cost summary ---
+                  remark #15476: scalar cost: 8 
+                  remark #15477: vector cost: 1.750 
+                  remark #15478: estimated potential speedup: 4.550 
+                  remark #15488: --- end vector cost summary ---
+                  remark #25456: Number of Array Refs Scalar Replaced In Loop: 36
+                  remark #25015: Estimate of max trip count of loop=32
+               LOOP END
+
+               LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(10,13) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+               <Remainder loop for vectorization>
+                  remark #25015: Estimate of max trip count of loop=128
+               LOOP END
+            LOOP END
+
+            LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(9,9) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+            <Remainder>
+               remark #15542: loop was not vectorized: inner loop was already vectorized
+               remark #25015: Estimate of max trip count of loop=125
+
+               LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(10,13) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15305: vectorization support: vector length 4
+                  remark #15399: vectorization support: unroll factor set to 4
+                  remark #15309: vectorization support: normalized vectorization overhead 0.036
+                  remark #15300: LOOP WAS VECTORIZED
+                  remark #15448: unmasked aligned unit stride loads: 8 
+                  remark #15449: unmasked aligned unit stride stores: 4 
+                  remark #15475: --- begin vector cost summary ---
+                  remark #15476: scalar cost: 33 
+                  remark #15477: vector cost: 7.000 
+                  remark #15478: estimated potential speedup: 4.690 
+                  remark #15488: --- end vector cost summary ---
+                  remark #25456: Number of Array Refs Scalar Replaced In Loop: 12
+                  remark #25015: Estimate of max trip count of loop=8
+               LOOP END
+
+               LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(10,13) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+               <Remainder loop for vectorization>
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15305: vectorization support: vector length 4
+                  remark #15309: vectorization support: normalized vectorization overhead 0.500
+                  remark #15301: REMAINDER LOOP WAS VECTORIZED
+                  remark #15448: unmasked aligned unit stride loads: 2 
+                  remark #15449: unmasked aligned unit stride stores: 1 
+                  remark #15475: --- begin vector cost summary ---
+                  remark #15476: scalar cost: 8 
+                  remark #15477: vector cost: 1.750 
+                  remark #15478: estimated potential speedup: 4.550 
+                  remark #15488: --- end vector cost summary ---
+                  remark #25456: Number of Array Refs Scalar Replaced In Loop: 3
+                  remark #25015: Estimate of max trip count of loop=32
+               LOOP END
+
+               LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(10,13) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+               <Remainder loop for vectorization>
+                  remark #25015: Estimate of max trip count of loop=128
+               LOOP END
+            LOOP END
+         LOOP END
+
+         LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(8,5) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+         <Remainder>
+            remark #15542: loop was not vectorized: inner loop was already vectorized
+            remark #25015: Estimate of max trip count of loop=125
+
+            LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(9,9) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+               remark #15542: loop was not vectorized: inner loop was already vectorized
+               remark #25015: Estimate of max trip count of loop=125
+
+               LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(10,13) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15305: vectorization support: vector length 4
+                  remark #15399: vectorization support: unroll factor set to 4
+                  remark #15309: vectorization support: normalized vectorization overhead 0.036
+                  remark #15300: LOOP WAS VECTORIZED
+                  remark #15448: unmasked aligned unit stride loads: 2 
+                  remark #15449: unmasked aligned unit stride stores: 1 
+                  remark #15475: --- begin vector cost summary ---
+                  remark #15476: scalar cost: 8 
+                  remark #15477: vector cost: 1.750 
+                  remark #15478: estimated potential speedup: 4.550 
+                  remark #15488: --- end vector cost summary ---
+                  remark #25015: Estimate of max trip count of loop=8
+               LOOP END
+
+               LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(10,13) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+               <Remainder loop for vectorization>
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,17) ]
+                  remark #15388: vectorization support: reference B[k][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(11,40) ]
+                  remark #15305: vectorization support: vector length 4
+                  remark #15309: vectorization support: normalized vectorization overhead 1.571
+                  remark #15301: REMAINDER LOOP WAS VECTORIZED
+                  remark #15448: unmasked aligned unit stride loads: 2 
+                  remark #15449: unmasked aligned unit stride stores: 1 
+                  remark #15475: --- begin vector cost summary ---
+                  remark #15476: scalar cost: 8 
+                  remark #15477: vector cost: 1.750 
+                  remark #15478: estimated potential speedup: 4.550 
+                  remark #15488: --- end vector cost summary ---
+                  remark #25015: Estimate of max trip count of loop=32
+               LOOP END
+
+               LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/versions/orig.c(10,13) inlined into /VM/stud/S5312342/Downloads/HPC/src/main.c(63,5)
+               <Remainder loop for vectorization>
+                  remark #25015: Estimate of max trip count of loop=128
+               LOOP END
+            LOOP END
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: printErrors(ErrorEntry *, int)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/io_utils.c(40,5)
+   remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /VM/stud/S5312342/Downloads/HPC/src/io_utils.c(42,9) ]
+LOOP END
+===========================================================================
+
+Begin optimization report for: get_errors(int, m_type (*)[*], m_type (*)[*], m_type (*)[*], double, int, ErrorEntry *)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/io_utils.c(18,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/io_utils.c(19,9)
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/io_utils.c(21,13)
+      <Peeled loop for vectorization>
+         remark #25015: Estimate of max trip count of loop=1
+      LOOP END
+
+      LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/io_utils.c(21,13)
+         remark #15388: vectorization support: reference A[i][k] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/io_utils.c(22,24) ]
+         remark #15328: vectorization support: non-unit strided load was emulated for the variable <B[k][j]>, stride is unknown to compiler   [ /VM/stud/S5312342/Downloads/HPC/src/io_utils.c(22,34) ]
+         remark #15305: vectorization support: vector length 2
+         remark #15399: vectorization support: unroll factor set to 4
+         remark #15309: vectorization support: normalized vectorization overhead 0.639
+         remark #15355: vectorization support: res is double type reduction   [ /VM/stud/S5312342/Downloads/HPC/src/io_utils.c(20,24) ]
+         remark #15300: LOOP WAS VECTORIZED
+         remark #15442: entire loop may be executed in remainder
+         remark #15448: unmasked aligned unit stride loads: 1 
+         remark #15452: unmasked strided loads: 1 
+         remark #15475: --- begin vector cost summary ---
+         remark #15476: scalar cost: 7 
+         remark #15477: vector cost: 4.500 
+         remark #15478: estimated potential speedup: 1.510 
+         remark #15488: --- end vector cost summary ---
+      LOOP END
+
+      LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/io_utils.c(21,13)
+      <Remainder loop for vectorization>
+      LOOP END
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: init_matrices(int, m_type (*)[*], m_type (*)[*], m_type (*)[*])
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/matrix_utils.c(29,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/matrix_utils.c(30,9)
+   <Peeled loop for vectorization>
+      remark #25015: Estimate of max trip count of loop=3
+   LOOP END
+
+   LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/matrix_utils.c(30,9)
+      remark #15389: vectorization support: reference A[i][j] has unaligned access   [ /VM/stud/S5312342/Downloads/HPC/src/matrix_utils.c(31,13) ]
+      remark #15389: vectorization support: reference B[i][j] has unaligned access   [ /VM/stud/S5312342/Downloads/HPC/src/matrix_utils.c(32,13) ]
+      remark #15388: vectorization support: reference C[i][j] has aligned access   [ /VM/stud/S5312342/Downloads/HPC/src/matrix_utils.c(33,13) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15305: vectorization support: vector length 4
+      remark #15399: vectorization support: unroll factor set to 4
+      remark #15309: vectorization support: normalized vectorization overhead 0.308
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15451: unmasked unaligned unit stride stores: 2 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 9 
+      remark #15477: vector cost: 3.250 
+      remark #15478: estimated potential speedup: 2.540 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/matrix_utils.c(30,9)
+   <Remainder loop for vectorization>
+      remark #15389: vectorization support: reference A[i][j] has unaligned access   [ /VM/stud/S5312342/Downloads/HPC/src/matrix_utils.c(31,13) ]
+      remark #15389: vectorization support: reference B[i][j] has unaligned access   [ /VM/stud/S5312342/Downloads/HPC/src/matrix_utils.c(32,13) ]
+      remark #15389: vectorization support: reference C[i][j] has unaligned access   [ /VM/stud/S5312342/Downloads/HPC/src/matrix_utils.c(33,13) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15305: vectorization support: vector length 4
+      remark #15309: vectorization support: normalized vectorization overhead 1.267
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15451: unmasked unaligned unit stride stores: 2 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 9 
+      remark #15477: vector cost: 3.250 
+      remark #15478: estimated potential speedup: 2.540 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /VM/stud/S5312342/Downloads/HPC/src/matrix_utils.c(30,9)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+===========================================================================

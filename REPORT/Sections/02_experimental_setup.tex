@@ -1,0 +1,130 @@
+\section{Experimental Setup}
+
+This section describes the experimental framework adopted, providing a detailed overview of the hardware configuration, software stack, and experimental procedures used in this study.
+
+
+
+% =========================================================
+% ===================== HARDWARE ==========================
+% =========================================================
+
+\subsection{Hardware Platform}
+
+\subsubsection{CPU Hardware Specifications (University Lab)}
+All CPU-based experiments (sequential, OpenMP and MPI implementations) were conducted on the laboratory workstations of the University of Genoa. 
+The main architectural characteristics of the processors are reported in Table~\ref{tab:cpu_specs}.
+
+
+\paragraph{CPU topology (hwloc).}
+In addition to \texttt{lscpu}, we used \texttt{lstopo} (hwloc) to inspect the CPU topology, including the mapping between physical cores, hardware threads (PUs), and cache hierarchy.
+The results of the analysis of this topology are integrated with those reported in Table~\ref{tab:cpu_specs}.
+
+\input{Tables/cpu_specs}
+
+The platform features an asymmetric hybrid core design combining 8 \emph{Performance cores} (P-cores, supporting 2-way simultaneous multithreading) and 8 \emph{Efficient cores} (E-cores, single-threaded), yielding a total of 24 logical CPUs\footnote{In Intel's hybrid architecture Performance cores are optimized for single-threaded execution speed and low latency, whereas Efficient cores are designed to maximize multi-threaded throughput and power efficiency per watt.}. 
+
+Furthermore, the cache hierarchy is heterogeneous: P-cores possess private L2 caches, whereas E-cores are grouped into clusters that share a common L2 cache.
+
+
+\subsubsection{GPU Hardware Specifications (Google Colab)}\label{sec:GPU spec}
+CUDA experiments were conducted using Google Colab. 
+
+
+The specifications of the device used for the experiments are reported in Table~\ref{tab:gpu_specs_colab}. The NVIDIA Tesla T4 is based on the Turing architecture (compute capability 7.5) and features 40 Streaming Multiprocessors (SMs), for a total of 2560 CUDA cores and 320 Tensor cores. 
+
+The device provides approximately 8.1 TFLOP/s of theoretical single-precision (FP32) performance and a peak memory bandwidth of about 320 GB/s using GDDR6 memory.
+
+While the T4 is capable of approximately 8.1 TFLOP/s in single-precision (FP32), in our study we explicitly focus on double-precision (FP64) implementations.  
+It is also important to acknowledge that the onboard \emph{Tensor Cores} allow for heavily optimized matrix multiplications when utilizing libraries (such as \texttt{cuBLAS})\footnote{Tensor Cores are specialized execution units designed to compute dense matrix-multiply-and-accumulate (MMA) operations at the hardware level in a single clock cycle. In this study we did not use them since they do not support the FP64 precision.}.
+
+
+\paragraph{Hardware Profiling}
+It should be noted that some architectural parameters, including the number of Streaming Multiprocessors, CUDA cores, tensor cores, peak FP32 throughput, and theoretical memory bandwidth, are not directly obtainable via \texttt{nvidia-smi}. 
+These values were derived from the official NVIDIA Tesla T4 technical documentation and datasheet.
+
+Since Google Colab dynamically assigns GPU resources, the reported specifications correspond to the device allocated during the experimental session and may vary across different sessions.
+
+\input{Tables/gpu_specs_colab}
+
+
+
+% =========================================================
+% ===================== SOFTWARE ==========================
+% =========================================================
+
+\subsection{Software Environment}
+
+The experiments were conducted using multiple compiler toolchains and execution environments in order to evaluate their impact on sequential performance.
+Table~\ref{tab:software_env} summarizes the software configuration adopted throughout the study.
+
+\input{Tables/software_env}
+
+
+
+
+
+% =========================================================
+% ============ BENCHMARKING INFRASTRUCTURE ================
+% =========================================================
+
+\subsection{Benchmarking methodology}
+
+To ensure fair and reproducible performance evaluation, we developed an automated benchmarking infrastructure specifically built for this project.
+
+All major parameters of the implementation, including the matrix dimension $n$, are defined at runtime (e.g., avoiding hard-coded constants like \texttt{\#define n 5000}) through command-line arguments rather than compile-time constants. 
+This design choice prevents the compiler from performing compile-time optimizations such as constant propagation, loop-bound specialization, dead-code elimination, and aggressive static unrolling that could artificially alter performance measurements.
+
+The benchmarking framework allows:
+\begin{itemize}
+    \item Automated compilation with multiple compiler configurations and optimization flags;
+    \item Execution over multiple matrix sizes;
+    \item Repeated runs (iterations) to reduce noise and improve statistical reliability;
+    \item Structured logging of execution times and derived metrics.
+\end{itemize}
+
+All experiments were conducted using scripted build and test pipelines to ensure consistency across different hardware platforms and programming models.
+
+
+\subsubsection{Metrics}\label{subsubsec:metrics}
+To quantify the sheer computational volume of the matrix multiplication, we calculate the total Floating-Point Operations (FLOPs). This metric is essential because it establishes a deterministic, hardware-independent baseline of the mathematical work required purely based on the matrix dimension $n$.
+$$Total FLOPs = 2n^3$$
+
+To evaluate the actual processing throughput, we measure performance in Giga Floating-Point Operations Per Second (GFLOPS). This metric normalizes the execution time against the problem size, providing a standardized rate that allows us to directly compare the computational efficiency of different implementations against the hardware's theoretical peak limits.
+$$GFLOPS = \frac{2n^3}{t_{hotspot} \times 10^9}$$
+
+To measure the tangible benefit of our parallelization strategies, we calculate the absolute Speedup. This ratio is crucial for determining exactly how many times faster a parallel execution running on $p$ processing elements is compared to the absolute best sequential baseline, validating whether the parallelization effort was worthwhile.
+$$Speedup(p) = \frac{T_{sequential}}{T_{parallel}(p)}$$
+
+Finally, Parallel Efficiency exposes the scalability and the hidden overheads (such as synchronization or memory contention) of adding more compute resources. By comparing the achieved speedup to the number of processing elements $p$, it clearly reveals how effectively the workload is distributed and identifies the point at which adding more threads yields diminishing returns.
+$$Efficiency(p) = \frac{Speedup(p)}{p} \times 100\%$$
+
+% =========================================================
+% ===================== BASE-CODE =========================
+% =========================================================
+
+\subsection{Baseline Implementation}
+The reference implementation consists of the classical triple-nested loop algorithm\footnote{See Appendix~\ref{app:algorithms} for a integral assessment of the algorithm limitations and capabilities.}, with loop $i-k-j$ as shown in Listing~\ref{lst:naive_mm}.
+
+\begin{lstlisting}[style=CStyle, caption={Naive matrix multiplication}, label={lst:naive_mm}]
+void multiply_matrices(int n, 
+    m_type (*restrict A)[n], 
+    m_type (*restrict B)[n], 
+    m_type (*restrict C)[n]) 
+{
+    for (int i = 0; i < n; ++i)
+        for (int k = 0; k < n; k++)
+            for (int j = 0; j < n; ++j)
+                C[i][j] += A[i][k] * B[k][j];
+}
+\end{lstlisting}
+
+The primary objective of this initial analysis is to identify the optimal compiler and optimization flag combination (e.g., \texttt{-O3}, \texttt{-xHost}) that minimizes execution time. We evaluate three distinct compilers available on our platform: GCC (\texttt{gcc}), the classic Intel C++ Compiler (\texttt{icc}), and the modern LLVM-based Intel oneAPI C++ Compiler (\texttt{icx}).
+
+To evaluate the compilers and our subsequent optimizations, our experimental methodology is divided into two phases:
+
+\begin{enumerate}
+    \item \textbf{Performance Scaling:} We test the kernels across various matrix sizes ($n$) to plot execution time trends.
+    \item \textbf{Microarchitectural Profiling:} We analyze vectorization, roofline metrics, and cache behavior using \textbf{Intel Advisor} and \textbf{Valgrind Cachegrind}. To ensure fair comparisons across different implementations, we fix the matrix size to \texttt{\textbf{n=5000}}.
+    
+    Crucially, this dimension is \texttt{\textbf{provided at runtime}} (unless specified otherwise) to prevent the compiler from applying static, size-specific optimizations and set-up  the problem as a real-world use case.
+\end{enumerate}

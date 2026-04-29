@@ -1,0 +1,16 @@
+executable,returncode,n,threads,real_time_seconds,cpu_time_seconds
+blas_like_openmp,0,5000,16,0.799743,8.850209
+blas_like_openmp,0,10000,16,6.145664,62.565413
+blas_like_openmp,0,15000,16,16.712829,186.309152
+blas_like_openmp,0,5000,16,0.794843,8.688707
+blas_like_openmp,0,10000,16,6.003990,58.393495
+blas_like_openmp,0,15000,16,16.811165,195.598633
+blas_like_openmp,0,5000,16,0.895803,9.384573
+blas_like_openmp,0,10000,16,6.394209,60.944104
+blas_like_openmp,0,15000,16,16.992980,189.696418
+blas_like_openmp,0,5000,16,0.881292,9.055545
+blas_like_openmp,0,10000,16,5.778357,58.939719
+blas_like_openmp,0,15000,16,16.660790,186.321533
+blas_like_openmp,0,5000,16,0.814277,8.636148
+blas_like_openmp,0,10000,16,4.623562,61.840568
+blas_like_openmp,0,15000,16,16.583742,193.418722

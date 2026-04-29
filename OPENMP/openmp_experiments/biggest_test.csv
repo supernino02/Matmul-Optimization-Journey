@@ -1,0 +1,2 @@
+executable,returncode,n,threads,schedule,block_size,OMP_PROC_BIND,OMP_PLACES,real_time_seconds,cpu_time_seconds
+blas_like_openmp,0,30000,16,2,1,close,sockets,120.698182,1806.934176

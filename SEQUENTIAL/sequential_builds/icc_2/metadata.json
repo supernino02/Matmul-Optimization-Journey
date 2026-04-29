@@ -1,0 +1,13 @@
+{
+  "compiler": "icc",
+  "flags_list": [
+    "-fopenmp",
+    "-Wall",
+    "-Wextra",
+    "-diag-disable=10441",
+    "-O2",
+    "-ipo"
+  ],
+  "target": "executable",
+  "version": "orig"
+}

@@ -1,0 +1,19 @@
+{
+  "compiler": "icx",
+  "flags_list": [
+    "-fopenmp",
+    "-Wall",
+    "-Wextra",
+    "-xHost",
+    "-O3",
+    "-ipo",
+    "-fp-model",
+    "fast=2",
+    "-fno-alias",
+    "-inline-level=2",
+    "-unroll-aggressive",
+    "-unroll=4"
+  ],
+  "target": "executable",
+  "version": "orig"
+}

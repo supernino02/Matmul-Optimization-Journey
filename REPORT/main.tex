@@ -1,0 +1,127 @@
+\documentclass[10pt, a4paper]{article} % Standard academic font size and paper
+
+% --- Page Margins & Padding ---
+% Standard 1-inch (2.54cm) margins are typical for this kind of report.
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+
+% --- Line Spacing ---
+\usepackage{setspace}
+\setstretch{1.15} % Slight padding between lines for readability
+
+% --- Headers and Footers ---
+% The document features "HPC Project Report" and "Page X of Y"
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\fancyhf{} % Clear default headers/footers
+\fancyhead[L]{Matrix Multiplication Parallelization} % Top Left
+\fancyhead[R]{HPC Project Report} % Top Right
+\fancyfoot[C]{\thepage\ of \pageref{LastPage}} % Bottom Center (e.g., 2 of 38)
+\renewcommand{\headrulewidth}{0.4pt} % Line under header
+\renewcommand{\footrulewidth}{0pt}
+
+% --- Fonts and Typography ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} % Standard Latin Modern font
+\usepackage{microtype} % Improves text justification and kerning
+\usepackage[title]{appendix}
+
+% --- Math Settings ---
+\usepackage{amsmath, amssymb, amsthm}
+
+% --- Code Block Settings ---
+% The document has C and CUDA code snippets. 
+\usepackage{threeparttable}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\lstdefinestyle{CStyle}{
+    language=C,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=8pt,
+    backgroundcolor=\color{white},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    frame=single,
+    tabsize=4,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    escapeinside={(*@}{@*)} % This defines the delimiters for LaTeX code
+}
+
+\usepackage[backend=biber, style=ieee]{biblatex}
+\addbibresource{references.bib}
+
+% --- Tables and Figures ---
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs} % For professional-looking tables
+\usepackage{caption}
+\captionsetup{font=small, labelfont=bf} % e.g., "Table 1:" in bold
+
+
+\title{\huge{\textbf{High Performance Computing} \\ 
+    Matrix Multiplication Analysis \& Parallelization}}
+\author{Luca Ninivaggi (S5312342) \\
+    Flavio Barrara Stefani (S5175710) \\
+    Isabella Tagliafico (S4644488)
+    \date{}
+    }
+
+\begin{document}
+
+
+\maketitle
+\input{abstract}
+
+\tableofcontents
+
+\input{Sections/01_introduction}
+
+\input{Sections/02_experimental_setup}
+
+\newpage
+\input{Sections/03_sequential}
+
+\newpage
+\input{Sections/04_OPENMP}
+
+\newpage
+\input{Sections/05_CUDA}
+
+\newpage
+\input{Sections/06_MPI}
+
+\newpage
+\input{Sections/07_RESULTS}
+
+\newpage
+\input{appendices/algorithms}
+\newpage
+\input{appendices/caching}
+
+\newpage
+\nocite{*}
+\printbibliography
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,173 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.10.0 Build 20230609_000000
+
+Compiler options: -I/VM/stud/S5312342/HPC/src -fopenmp -Wall -Wextra -diag-disable=10441 -DOPENMP -DALIGN -O3 -ipo -xhost -inline-level=2 -unroll-aggressive -unroll=4 -o /VM/stud/S5312342/HPC/builds/orig_openmp/executable -qopt-report=5 -qopt-report-phase=vec,loop -qopt-report-file=/VM/stud/S5312342/HPC/builds/orig_openmp/executable.opt.txt
+
+Begin optimization report for: main(int, char **)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at /VM/stud/S5312342/HPC/src/arg_parser.c(61,5) inlined into /VM/stud/S5312342/HPC/src/main.c(51,30)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ /VM/stud/S5312342/HPC/src/arg_parser.c(63,9) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/HPC/src/arg_parser.c(88,5) inlined into /VM/stud/S5312342/HPC/src/main.c(52,28)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ /VM/stud/S5312342/HPC/src/arg_parser.c(90,9) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/HPC/src/arg_parser.c(74,5) inlined into /VM/stud/S5312342/HPC/src/main.c(53,28)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ /VM/stud/S5312342/HPC/src/arg_parser.c(76,9) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/HPC/src/arg_parser.c(74,5) inlined into /VM/stud/S5312342/HPC/src/main.c(63,18)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ /VM/stud/S5312342/HPC/src/arg_parser.c(76,9) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/HPC/src/arg_parser.c(74,5) inlined into /VM/stud/S5312342/HPC/src/main.c(74,21)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ /VM/stud/S5312342/HPC/src/arg_parser.c(76,9) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/HPC/src/arg_parser.c(74,5) inlined into /VM/stud/S5312342/HPC/src/main.c(79,18)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ /VM/stud/S5312342/HPC/src/arg_parser.c(76,9) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/HPC/src/arg_parser.c(74,5) inlined into /VM/stud/S5312342/HPC/src/main.c(80,42)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ /VM/stud/S5312342/HPC/src/arg_parser.c(76,9) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/HPC/src/arg_parser.c(35,5) inlined into /VM/stud/S5312342/HPC/src/main.c(91,5)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ /VM/stud/S5312342/HPC/src/arg_parser.c(36,9) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/HPC/src/arg_parser.c(46,9) inlined into /VM/stud/S5312342/HPC/src/main.c(91,5)
+   remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /VM/stud/S5312342/HPC/src/arg_parser.c(48,17) ]
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/HPC/src/versions/orig.c(23,5) inlined into /VM/stud/S5312342/HPC/src/main.c(115,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /VM/stud/S5312342/HPC/src/versions/orig.c(23,5) inlined into /VM/stud/S5312342/HPC/src/main.c(115,5)
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at /VM/stud/S5312342/HPC/src/versions/orig.c(29,9) inlined into /VM/stud/S5312342/HPC/src/main.c(115,5)
+         remark #15542: loop was not vectorized: inner loop was already vectorized
+
+         LOOP BEGIN at /VM/stud/S5312342/HPC/src/versions/orig.c(30,13) inlined into /VM/stud/S5312342/HPC/src/main.c(115,5)
+            remark #15388: vectorization support: reference C has aligned access   [ /VM/stud/S5312342/HPC/src/versions/orig.c(31,17) ]
+            remark #15388: vectorization support: reference C has aligned access   [ /VM/stud/S5312342/HPC/src/versions/orig.c(31,17) ]
+            remark #15388: vectorization support: reference B has aligned access   [ /VM/stud/S5312342/HPC/src/versions/orig.c(31,38) ]
+            remark #15305: vectorization support: vector length 4
+            remark #15399: vectorization support: unroll factor set to 4
+            remark #15309: vectorization support: normalized vectorization overhead 0.036
+            remark #15300: LOOP WAS VECTORIZED
+            remark #15448: unmasked aligned unit stride loads: 2 
+            remark #15449: unmasked aligned unit stride stores: 1 
+            remark #15475: --- begin vector cost summary ---
+            remark #15476: scalar cost: 8 
+            remark #15477: vector cost: 1.750 
+            remark #15478: estimated potential speedup: 3.990 
+            remark #15488: --- end vector cost summary ---
+         LOOP END
+
+         LOOP BEGIN at /VM/stud/S5312342/HPC/src/versions/orig.c(30,13) inlined into /VM/stud/S5312342/HPC/src/main.c(115,5)
+         <Remainder loop for vectorization>
+            remark #15388: vectorization support: reference C has aligned access   [ /VM/stud/S5312342/HPC/src/versions/orig.c(31,17) ]
+            remark #15388: vectorization support: reference C has aligned access   [ /VM/stud/S5312342/HPC/src/versions/orig.c(31,17) ]
+            remark #15388: vectorization support: reference B has aligned access   [ /VM/stud/S5312342/HPC/src/versions/orig.c(31,38) ]
+            remark #15305: vectorization support: vector length 4
+            remark #15309: vectorization support: normalized vectorization overhead 1.571
+            remark #15301: REMAINDER LOOP WAS VECTORIZED
+            remark #15448: unmasked aligned unit stride loads: 2 
+            remark #15449: unmasked aligned unit stride stores: 1 
+            remark #15475: --- begin vector cost summary ---
+            remark #15476: scalar cost: 8 
+            remark #15477: vector cost: 1.750 
+            remark #15478: estimated potential speedup: 3.990 
+            remark #15488: --- end vector cost summary ---
+         LOOP END
+
+         LOOP BEGIN at /VM/stud/S5312342/HPC/src/versions/orig.c(30,13) inlined into /VM/stud/S5312342/HPC/src/main.c(115,5)
+         <Remainder loop for vectorization>
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: printErrors(ErrorEntry *, int)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at /VM/stud/S5312342/HPC/src/io_utils.c(45,5)
+   remark #15527: loop was not vectorized: function call to fprintf(FILE *__restrict__, const char *__restrict__, ...) cannot be vectorized   [ /VM/stud/S5312342/HPC/src/io_utils.c(47,9) ]
+LOOP END
+===========================================================================
+
+Begin optimization report for: get_errors(int, m_type (*)[*], m_type (*)[*], m_type (*)[*], double, int, ErrorEntry *)
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at /VM/stud/S5312342/HPC/src/io_utils.c(19,5)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between matrix[i][k] (21:13) and A[i][j] (23:17)
+   remark #15346: vector dependence: assumed ANTI dependence between A[i][j] (23:17) and matrix[i][k] (21:13)
+
+   LOOP BEGIN at /VM/stud/S5312342/HPC/src/io_utils.c(20,9)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed FLOW dependence between matrix[i][k] (21:13) and A[i][j] (23:17)
+      remark #15346: vector dependence: assumed ANTI dependence between A[i][j] (23:17) and matrix[i][k] (21:13)
+
+      LOOP BEGIN at /VM/stud/S5312342/HPC/src/io_utils.c(22,13)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between matrix[i][k] (23:17) and matrix[i][k] (23:17)
+         remark #15346: vector dependence: assumed ANTI dependence between matrix[i][k] (23:17) and matrix[i][k] (23:17)
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at /VM/stud/S5312342/HPC/src/io_utils.c(22,13)
+      <Remainder>
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /VM/stud/S5312342/HPC/src/io_utils.c(29,5)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between error_entries->row[err_count] (33:21) and error_entries->row[err_count] (33:21)
+   remark #15346: vector dependence: assumed OUTPUT dependence between error_entries->row[err_count] (33:21) and error_entries->row[err_count] (33:21)
+
+   LOOP BEGIN at /VM/stud/S5312342/HPC/src/io_utils.c(30,9)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between err_count (32:17) and err_count (38:17)
+      remark #15346: vector dependence: assumed FLOW dependence between err_count (38:17) and err_count (32:17)
+      remark #15346: vector dependence: assumed ANTI dependence between err_count (32:17) and err_count (38:17)
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: init_matrices(int, int, m_type (*)[*], m_type (*)[*], m_type (*)[*])
+
+    Report from: Loop nest & Vector optimizations [loop, vec]
+
+
+LOOP BEGIN at /VM/stud/S5312342/HPC/src/matrix_utils.c(36,5)
+   remark #15382: vectorization support: call to function rand(void) cannot be vectorized   [ /VM/stud/S5312342/HPC/src/matrix_utils.c(39,35) ]
+   remark #15382: vectorization support: call to function rand(void) cannot be vectorized   [ /VM/stud/S5312342/HPC/src/matrix_utils.c(40,35) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between call:rand(void) (39:35) and call:rand(void) (40:35)
+   remark #15346: vector dependence: assumed OUTPUT dependence between call:rand(void) (40:35) and call:rand(void) (39:35)
+
+   LOOP BEGIN at /VM/stud/S5312342/HPC/src/matrix_utils.c(37,9)
+      remark #15382: vectorization support: call to function rand(void) cannot be vectorized   [ /VM/stud/S5312342/HPC/src/matrix_utils.c(39,35) ]
+      remark #15382: vectorization support: call to function rand(void) cannot be vectorized   [ /VM/stud/S5312342/HPC/src/matrix_utils.c(40,35) ]
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed OUTPUT dependence between call:rand(void) (39:35) and call:rand(void) (40:35)
+      remark #15346: vector dependence: assumed OUTPUT dependence between call:rand(void) (40:35) and call:rand(void) (39:35)
+   LOOP END
+LOOP END
+===========================================================================

@@ -1,0 +1,134 @@
+\subsection{BLAS-like implementation}
+Given the high complexity of the algorithm (details in Appendix~\ref{subsec:openblas}), it could be modified in several ways (e.g., each thread having its own \texttt{packedA} and \texttt{packedB}, or sharing \texttt{packedB} while keeping \texttt{packedA} private).
+
+Ultimately, the empirically proven best choice is the one proposed in Listing~\ref{lst:blas_like_openmp}: each thread allocates its own \texttt{packedA} and \texttt{packedB} structures and works only on its assigned subset of rows (the \texttt{\#pragma omp for} directive subdivides the workspace of that iteration).
+
+This proved to be the optimal approach because the high capacity of the L3 cache (30 MB) can easily store all the \texttt{packedB} blocks across the threads. Each \texttt{packedB} block is $512 \times 256 \times 8$ bytes (1 MB), meaning the L3 cache can comfortably accommodate up to 30 of them. Additionally, each L2 cache (1.25 MB) can efficiently fit up to two \texttt{packedA} blocks, as each one is $256 \times 256 \times 8$ bytes (0.5 MB).
+
+\begin{lstlisting}[style=CStyle, caption={Blas-like implementation with OpenMP directives}, label={lst:blas_like_openmp}]
+extern int n_threads;
+extern omp_sched_t runtime_schedule_type;
+extern int block_size;
+
+void multiply_matrices( int n, 
+    double (*restrict A)[n], 
+    double (*restrict B)[n], 
+    double (*restrict C)[n]) 
+{
+    
+    (*@\textcolor{red}{omp\_set\_schedule(runtime\_schedule\_type, block\_size);} @*)
+    (*@\textcolor{red}{omp\_set\_num\_threads(n\_threads);} @*)    
+    
+    (*@\textcolor{red}{\#pragma omp parallel shared(A, B, C, n)} @*)   
+    {
+        const PackedA_t packedA = _mm_malloc(MC * KC * sizeof(double), 64);
+        const PackedB_t packedB = _mm_malloc(NC * KC * sizeof(double), 64);
+
+        (*@\textcolor{red}{\#pragma omp for schedule(runtime)} @*)   
+        for (int j = 0; j < n; j += NC) {
+            int nc = MIN(NC, n - j);
+            
+            for (int k = 0; k < n; k += KC) {
+            
+                int kc = MIN(KC, n - k);                
+                pack_B(n, B, packedB, k, j, kc, nc);  
+                
+                for (int i = 0; i < n; i += MC) {
+                
+                    int mc = MIN(MC, n - i);                    
+                    pack_A(n, A, packedA, i, k, mc, kc);
+                    
+                    for (int ir = 0; ir < mc; ir += MR)
+                        for (int jr = 0; jr < nc; jr += NR)
+                            kernel_4x8(n, C,
+                                    packedA[ir / MR],
+                                    packedB[jr / NR],
+                                    kc, i + ir, j + jr);
+                }
+            }
+        }
+
+        _mm_free(packedA);
+        _mm_free(packedB);
+    }
+}
+\end{lstlisting}
+
+Notably, this approach introduces significant memory bandwidth overhead. Because the \texttt{\#pragma omp for} directive distributes the outer $j$ loop, each thread must independently execute \texttt{pack\_A}, thereby redundantly fetching and packing the exact same blocks of matrix $A$ from main memory $T$ times. Resolving this redundancy is non-trivial; it requires abandoning simple loop-level parallelization in favor of a Single Program, Multiple Data (SPMD) architecture with explicit thread synchronization barriers to safely share packed buffers \footnote{As demonstrated in Section~\ref{subsec:openmp_comparisons}, state-of-the-art (SOTA) libraries substantially outperform this baseline. SOTA implementations, such as OpenBLAS, achieve peak memory bandwidth by dynamically sharing packed buffers across thread teams and utilizing hardware-specific cache-aware optimizations.}. 
+
+Furthermore, we were not capable of acquiring a fully working and readable implementation of those optimizations (to conduct a in-depth analysis). Consequently, this OpenMP integrations is considered sufficient for the purposes of this baseline empirical evaluation.
+
+\subsubsection{Concurrency}
+We can now start again with the assessment of the performance of the algorithm as the number of threads changes. Since now the performances are comparable with  the sequential implementation, the matrix size was set to \texttt{n=15000} and every evaluation was repeated for \texttt{3} iterations.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Images/blas_like_t_tuning.png}
+    \caption{Hyper-parameter tuning of the blas-like implementation on $T$, evaluated on matrix \texttt{n=15000} }
+    \label{fig:blas_like_tune_t}
+\end{figure}
+
+The educated guess is confirmed also in this case, in the Figure~\ref{fig:blas_like_tune_t}; the  performance notably improves with $T \leq 6$ with a quasi-perfect \textbf{speed-up} and \textbf{efficiency}. With more threads, the gain  decreases until the improvements are negligible.
+
+The \textbf{performance degradation} is further motivated by the roofline analysis in Figure~\ref{fig:blas_intel_advisor}: notably, the performance drops from $\approx 59.18 \text{ GFLOPS}$ ($\approx 92\%$ of the \textbf{DP Vector FMA Peak} of $63.71 \text{ GFLOPS}$ --- as shown in the sequential analysis in Figure~\ref{fig:blas_vs_openblas}) to $54\%$ of the roof defined by a multithreaded \textbf{DP Vector FMA Peak} ($744.58 \text{ GFLOPS}$).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{Images/blas_intel.png}
+\caption{Roofline analysis of our \texttt{Blas-Like} implementatation, executed with \texttt{T=16} on \texttt{n=15000}}
+\label{fig:blas_intel_advisor}
+\end{figure}
+
+This performance plateau is reflected in the massive data traffic (more than 10,000 GB of L1 traffic, $\approx 48\%$ L3 impact) and low arithmetic intensity. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{Images/blas_comparison_15000.png}
+\caption{Performance comparison of the original \texttt{OpenBLAS} and our implementation, in function of \texttt{T} on a matrix \texttt{n=15000}.}
+\label{fig:blas_comparison_openmp}
+\end{figure}
+
+As Figure~\ref{fig:blas_comparison_openmp} illustrates, even the state-of-the-art OpenBLAS struggles under these constraints; despite a marginally faster absolute execution time, OpenBLAS suffers from severe CPU thrashing beyond 10 threads, yielding a heavily degraded thread efficiency (along with a even more excessive cpu usage).
+
+\vspace{1em}
+Having established the inferiority of our implementation, we now attempt to further optimize its multi-thread execution. The pipeline follows a \textbf{greedy approach} to tune the hyperparameters; therefore, for all subsequent tests, the thread count is fixed at \texttt{-{}-threads 16}.
+
+\subsubsection{Scheduling (and Chunk Size)}
+To optimize the thread workload, we analyzed the impact of OpenMP scheduling policies (\texttt{static}, \texttt{dynamic}, \texttt{guided}) across varying chunk sizes. Given the matrix size $n=15000$ and a macro-kernel column block $NC=512$, the parallelized outer loop executes  $\lceil 15000 / 512 \rceil = 30$ iterations of the outer (parallelized) loop. 
+
+This coarse granularity, implemented to maximize the usage of the different levels of caches,  dictates the scheduling behavior:
+ 
+\begin{itemize}
+    \item \textbf{Thread Starvation (Chunk Size $> 1$):} With only 30 total iterations available to $T=16$ threads, increasing the chunk size immediately causes hardware under-utilization. A chunk size of $2$ yields 15 blocks (leaving 1 thread idle); a chunk size of $8$ leaves 12 threads idle; and any chunk size $\geq 32$ forces purely sequential execution.
+    \item \textbf{Load Imbalance:} While the default \texttt{static} policy has minimal overhead, it assumes equal work per iteration. However, the final iteration only computes $15000 \pmod{512} = 152$ columns, finishing significantly faster than the rest. \texttt{static} scheduling forces threads to idle at the implicit barrier while waiting for full-sized chunks to complete.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Images/blas_like_scheduling.png}
+    \caption{Average execution time across varying chunk sizes and scheduling policies, on a matrix n=15000 and T=16.}
+    \label{fig:blas_scheduling}
+\end{figure}
+
+As demonstrated in Figure~\ref{fig:blas_scheduling}, the margin for improvement is extremely narrow. Configurations with chunk sizes $\geq 8$ result in performance degradation. Consequently, to guarantee full core utilization, the chunk size must be strictly restricted to \texttt{1}. 
+
+Under those observations, the best possible choice is to use the dynamic scheduling by passing   \texttt{-{}-schedule 2 --block-size 1}; this improvement lowers the time down to \textbf{15.71 seconds}.
+
+
+\subsubsection{Affinity}
+Lastly, to (try to) mitigate cache thrashing and maximize hardware utilization, we evaluated the impact of thread affinity. OpenMP controls thread binding through two environment variables:
+\begin{itemize}
+    \item \texttt{OMP\_PLACES}: Defines the hardware granularity (\texttt{threads}, \texttt{cores}, or \texttt{sockets}) where threads are mapped to be executed.
+    \item \texttt{OMP\_PROC\_BIND}: Dictates the distribution policy (\texttt{master}, \texttt{close}, or \texttt{spread}) of threads across the defined places.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Images/blas_like_binding_bind.png}
+    \caption{Execution time varying with each possible mapping setting.}
+    \label{fig:blas_affinity}
+\end{figure}
+
+As illustrated in Figure~\ref{fig:blas_affinity}, the hardware binding configuration can nullify the performance gain of the multithread approach. The \texttt{master} policy catastrophically serializes the workload ($\approx 132\text{s}$) when restricted to a single thread or core, as all 16 threads are forced to multiplex onto a severely limited execution unit. It only recovers when the boundary is expanded to the entire \texttt{socket} (i.e on different cores). 
+
+In contrast, the \texttt{close} and \texttt{spread} policies maintain highly stable performance across all hardware granularities. The absolute optimal configuration is achieved by combining the \texttt{close} policy with \texttt{sockets} ($15.5\text{s}$).

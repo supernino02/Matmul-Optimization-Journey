@@ -1,0 +1,30 @@
+\begin{table}[H]
+\centering
+\begin{threeparttable}
+\caption{Advanced compiler optimization flags and their expected effects.}
+\label{tab:advanced_flags}
+\begin{tabular}{lp{3cm}p{7cm}}
+\toprule
+\textbf{Flag} & \textbf{Category} & \textbf{Microarchitectural Effect} \\
+\midrule
+\texttt{-xHost} & Architecture & Instructs the compiler to target the highest instruction set available on the local host\tnote{1}, enabling the widest possible SIMD registers. \\
+\midrule
+\texttt{-fp-model fast=2} & Floating Point & Enables aggressive floating-point optimizations. It allows for reordering of operations and ignores strict IEEE 754 rules to maximize throughput\tnote{2}. \\
+\midrule
+\texttt{-fno-alias} & Memory & Asserts that no two pointers point to the same memory location, allowing the compiler to reorder loads and stores without "aliasing" checks. \\
+\midrule
+\texttt{-inline-level=2} & Inlining & Increases the intensity of function inlining to replace function calls with the actual function body, reducing branch penalties and call overhead. \\
+\midrule
+\texttt{-unroll-aggressive} & Loop Control & Enables aggressive loop unrolling heuristics, attempting to unroll loops even when the benefit is not immediately obvious to standard logic. \\
+\midrule
+\texttt{-unroll=4} & Loop Control & Specifically sets the unroll factor to 4, ensuring four iterations are processed as a single block to reduce loop-counter overhead. \\
+\bottomrule
+\end{tabular}
+
+\begin{tablenotes}
+    \footnotesize % This makes the font smaller
+    \item[1] \textbf{AVX2} on the tested workstation, as reported in Table~\ref{tab:cpu_specs}.
+    \item[2] For this reason, at test time the results of the kernel are explicitly checked to ensure results do not differ from the correct behavior.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

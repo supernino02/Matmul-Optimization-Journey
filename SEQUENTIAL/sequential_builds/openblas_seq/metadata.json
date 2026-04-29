@@ -1,0 +1,16 @@
+{
+  "compiler": "icc",
+  "flags_list": [
+    "-fopenmp",
+    "-Wall",
+    "-Wextra",
+    "-diag-disable=10441",
+    "-O3",
+    "-xHost",
+    "-DALIGN",
+    "-DSEQUENTIAL",
+    "-I/VM/stud/S5312342/HPC/local_openblas/include"
+  ],
+  "target": "executable",
+  "version": "openblas"
+}

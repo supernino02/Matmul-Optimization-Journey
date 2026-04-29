@@ -1,0 +1,4 @@
+executable,returncode,n,cu_block_x,cu_block_y,real_time_seconds,cpu_time_seconds,gflops
+cuda_1,0,5000,32,32,1.994378,1.944307,125.35
+cuda_1,0,10000,32,32,15.143511,15.064447,132.07
+cuda_1,0,15000,32,32,76.929239,76.560332,87.74

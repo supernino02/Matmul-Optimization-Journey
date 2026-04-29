@@ -1,0 +1,193 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{boehm2022cuda}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=cf4750385ee5f32cbfe0b32d87b22029}{%
+           family={Boehm},
+           familyi={B\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{cf4750385ee5f32cbfe0b32d87b22029}
+      \strng{fullhash}{cf4750385ee5f32cbfe0b32d87b22029}
+      \strng{fullhashraw}{cf4750385ee5f32cbfe0b32d87b22029}
+      \strng{bibnamehash}{cf4750385ee5f32cbfe0b32d87b22029}
+      \strng{authorbibnamehash}{cf4750385ee5f32cbfe0b32d87b22029}
+      \strng{authornamehash}{cf4750385ee5f32cbfe0b32d87b22029}
+      \strng{authorfullhash}{cf4750385ee5f32cbfe0b32d87b22029}
+      \strng{authorfullhashraw}{cf4750385ee5f32cbfe0b32d87b22029}
+      \field{extraname}{1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{How to Optimize a CUDA Matmul Kernel for cuBLAS-like Performance: a Worklog}
+      \field{urlday}{28}
+      \field{urlmonth}{4}
+      \field{urlyear}{2026}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://siboehm.com/articles/22/CUDA-MMM
+      \endverb
+      \verb{url}
+      \verb https://siboehm.com/articles/22/CUDA-MMM
+      \endverb
+    \endentry
+    \entry{boehm2022fast}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=cf4750385ee5f32cbfe0b32d87b22029}{%
+           family={Boehm},
+           familyi={B\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{cf4750385ee5f32cbfe0b32d87b22029}
+      \strng{fullhash}{cf4750385ee5f32cbfe0b32d87b22029}
+      \strng{fullhashraw}{cf4750385ee5f32cbfe0b32d87b22029}
+      \strng{bibnamehash}{cf4750385ee5f32cbfe0b32d87b22029}
+      \strng{authorbibnamehash}{cf4750385ee5f32cbfe0b32d87b22029}
+      \strng{authornamehash}{cf4750385ee5f32cbfe0b32d87b22029}
+      \strng{authorfullhash}{cf4750385ee5f32cbfe0b32d87b22029}
+      \strng{authorfullhashraw}{cf4750385ee5f32cbfe0b32d87b22029}
+      \field{extraname}{2}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Fast Multidimensional Matrix Multiplication on CPU from Scratch}
+      \field{urlday}{28}
+      \field{urlmonth}{4}
+      \field{urlyear}{2026}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://siboehm.com/articles/22/Fast-MMM-on-CPU
+      \endverb
+      \verb{url}
+      \verb https://siboehm.com/articles/22/Fast-MMM-on-CPU
+      \endverb
+    \endentry
+    \entry{salykova2025advanced}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=626416197491079cb93cd9ec5f5d8462}{%
+           family={Salykova},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{626416197491079cb93cd9ec5f5d8462}
+      \strng{fullhash}{626416197491079cb93cd9ec5f5d8462}
+      \strng{fullhashraw}{626416197491079cb93cd9ec5f5d8462}
+      \strng{bibnamehash}{626416197491079cb93cd9ec5f5d8462}
+      \strng{authorbibnamehash}{626416197491079cb93cd9ec5f5d8462}
+      \strng{authornamehash}{626416197491079cb93cd9ec5f5d8462}
+      \strng{authorfullhash}{626416197491079cb93cd9ec5f5d8462}
+      \strng{authorfullhashraw}{626416197491079cb93cd9ec5f5d8462}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Advanced Matrix Multiplication Optimization on Modern Multi-Core Processors}
+      \field{urlday}{28}
+      \field{urlmonth}{4}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://salykova.github.io/matmul-cpu
+      \endverb
+      \verb{url}
+      \verb https://salykova.github.io/matmul-cpu
+      \endverb
+    \endentry
+    \entry{pitr2025optimizing}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=ea2690b62e64fd4cb827611a67a864ec}{%
+           family={Pitr},
+           familyi={P\bibinitperiod},
+           given={Michal},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{ea2690b62e64fd4cb827611a67a864ec}
+      \strng{fullhash}{ea2690b62e64fd4cb827611a67a864ec}
+      \strng{fullhashraw}{ea2690b62e64fd4cb827611a67a864ec}
+      \strng{bibnamehash}{ea2690b62e64fd4cb827611a67a864ec}
+      \strng{authorbibnamehash}{ea2690b62e64fd4cb827611a67a864ec}
+      \strng{authornamehash}{ea2690b62e64fd4cb827611a67a864ec}
+      \strng{authorfullhash}{ea2690b62e64fd4cb827611a67a864ec}
+      \strng{authorfullhashraw}{ea2690b62e64fd4cb827611a67a864ec}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Optimizing matrix multiplication}
+      \field{urlday}{28}
+      \field{urlmonth}{4}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://michalpitr.substack.com/p/optimizing-matrix-multiplication
+      \endverb
+      \verb{url}
+      \verb https://michalpitr.substack.com/p/optimizing-matrix-multiplication
+      \endverb
+    \endentry
+    \entry{intel2026advisor}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=b7f0fb90e404efb48f8a85a517dec3c9}{%
+           family={{Intel Corporation}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{b7f0fb90e404efb48f8a85a517dec3c9}
+      \strng{fullhash}{b7f0fb90e404efb48f8a85a517dec3c9}
+      \strng{fullhashraw}{b7f0fb90e404efb48f8a85a517dec3c9}
+      \strng{bibnamehash}{b7f0fb90e404efb48f8a85a517dec3c9}
+      \strng{authorbibnamehash}{b7f0fb90e404efb48f8a85a517dec3c9}
+      \strng{authornamehash}{b7f0fb90e404efb48f8a85a517dec3c9}
+      \strng{authorfullhash}{b7f0fb90e404efb48f8a85a517dec3c9}
+      \strng{authorfullhashraw}{b7f0fb90e404efb48f8a85a517dec3c9}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Intel® Advisor: Design and Optimize High-Performance Code}
+      \field{urlday}{28}
+      \field{urlmonth}{4}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.intel.com/content/www/us/en/developer/tools/oneapi/advisor.html
+      \endverb
+      \verb{url}
+      \verb https://www.intel.com/content/www/us/en/developer/tools/oneapi/advisor.html
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

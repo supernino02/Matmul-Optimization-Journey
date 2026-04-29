@@ -1,0 +1,80 @@
+\section{Sequential Optimization}\label{sec:sequential}
+
+The initial phase of our performance analysis aims to evaluate the baseline matrix multiplication kernel across different compilers (GCC, ICC, and ICX) and optimization levels (from \texttt{-O0} to aggressive flags like \texttt{-O3} and \texttt{-Ofast}). By progressively enabling optimizations and guiding them  towards the fastest implementation reachable, we can systematically identify compiler limitations, expose micro-architectural bottlenecks, and understand how loop transformations, vectorization, and instruction scheduling impact the performances of the algorithm.
+
+\subsection{ICC Optimization Levels}
+
+Although preliminary tests showed comparable baseline performance across GCC, ICX, and ICC, we selected the Intel Classic Compiler (ICC) for our detailed sequential analysis. 
+
+We chose ICC because each progressive optimization flag introduces significant, non-trivial changes to the generated assembly. While ICC is not always the fastest compiler at every intermediate step, its distinct code transformations make it ideal for microarchitectural profiling. Most importantly, as later sections will show, ICC ultimately delivers the highest peak performance for our fully optimized code.
+
+The following subsections examine the effects of increasing ICC's optimization levels by analyzing performance scaling, Intel Advisor rooflines, Valgrind memory traces, and compiler reports.
+
+
+\paragraph{Interprocedural Optimization.}
+In all test cases, the \texttt{-ipo} flag was utilized to enable multi-file Interprocedural Optimization. This is necessary because the matrix multiplication kernel is defined in a separate source file from the \texttt{main.c} driver. Without this flag, the compiler would be unable to perform cross-module optimizations, such as inlining and specialized constant propagation, during the link phase.
+
+
+%==============================
+%-------------O0---------------
+%==============================
+\input{Sections/icc optimizations/icc_0}
+
+%==============================
+%-------------O1---------------
+%==============================
+\input{Sections/icc optimizations/icc_1}
+
+%==============================
+%-------------O2---------------
+%==============================
+\input{Sections/icc optimizations/icc_2}
+
+%==============================
+%-------------O3---------------
+%==============================
+\input{Sections/icc optimizations/icc_3}
+
+%==============================
+%-------------O3 xHost (-DALIGN)---------------
+%==============================
+\input{Sections/icc optimizations/icc_better}
+
+%==============================
+%-------------EXPLICIT TILING ---------------
+%==============================
+\input{Sections/icc optimizations/icc_best}
+
+%==============================
+%-------------openBlas-like implementation ---------------
+%==============================
+\input{Sections/icc optimizations/blas_like_impl}
+
+
+
+
+
+
+
+% ========================================================================================
+% ==================================COMPILER COMPARISON===================================
+% ========================================================================================
+\subsection{Final Comparison}
+As illustrated in Figure~\ref{fig:all_seq_5000}, the in-depth study and progressive refinement of each version yields a consistently faster executable. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{Images/all_5000.png}
+\caption{Comparison of all the previously proposed implementations for $N=5000$.}
+\label{fig:all_seq_5000}
+\end{figure}
+
+The transition from naive memory accesses to compiler-driven tiling, and finally to explicit SIMD micro-kernels, effectively demonstrates the layers of optimization required to saturate modern hardware.
+
+For the sake of completeness, we ultimately compare our best implementations against the absolute state-of-the-art for Dense Matrix Multiplication on our specific architecture: the \textbf{Intel Math Kernel Library (MKL)}\footnote{Intel MKL (now part of oneAPI) is a highly optimized, proprietary math library developed directly by Intel. It relies on hand-tuned assembly, hardware-specific prefetching, and undocumented architectural features to reach the absolute theoretical peak throughput of Intel processors.}. 
+
+\input{Tables/sequential_comparison}
+
+By treating the Intel MKL performance as our 100\% baseline, we can accurately quantify how each of our iterative versions approaches the hardware's maximum potential across different matrix dimensions. 
+
+Using the GFLOPS computation formula detailed in Section~\ref{subsubsec:metrics}, we demonstrate that our custom implementation successfully achieves approximately \textbf{87\%} of the state-of-the-art peak performance.

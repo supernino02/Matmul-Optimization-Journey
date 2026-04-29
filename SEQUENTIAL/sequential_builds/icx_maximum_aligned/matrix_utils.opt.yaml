@@ -1,0 +1,263 @@
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 10, Column: 9 }
+Function:        create_matrix
+Args:
+  - Callee:          posix_memalign
+  - String:          ' will not be inlined into '
+  - Caller:          create_matrix
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 11, Column: 9 }
+Function:        create_matrix
+Args:
+  - Callee:          exit
+  - String:          ' will not be inlined into '
+  - Caller:          create_matrix
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 10, Column: 9 }
+Function:        create_matrix
+Args:
+  - Callee:          posix_memalign
+  - String:          ' will not be inlined into '
+  - Caller:          create_matrix
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 11, Column: 9 }
+Function:        create_matrix
+Args:
+  - Callee:          exit
+  - String:          ' will not be inlined into '
+  - Caller:          create_matrix
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 5, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            gvn
+Name:            LoadClobbered
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 18, Column: 12 }
+Function:        create_matrix
+Args:
+  - String:          'load of type '
+  - Type:            ''
+  - String:          ' not eliminated'
+  - String:          ' because it is clobbered by '
+  - ClobberedBy:     call
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 10, Column: 9 }
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 24, Column: 5 }
+Function:        free_matrix
+Args:
+  - Callee:          free
+  - String:          ' will not be inlined into '
+  - Caller:          free_matrix
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 23, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 24, Column: 5 }
+Function:        free_matrix
+Args:
+  - Callee:          free
+  - String:          ' will not be inlined into '
+  - Caller:          free_matrix
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 23, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 34, Column: 35 }
+Function:        init_matrices
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          init_matrices
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 30, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 35, Column: 35 }
+Function:        init_matrices
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          init_matrices
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 30, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 34, Column: 35 }
+Function:        init_matrices
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          init_matrices
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 30, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 35, Column: 35 }
+Function:        init_matrices
+Args:
+  - Callee:          rand
+  - String:          ' will not be inlined into '
+  - Caller:          init_matrices
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 30, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 33, Column: 19 }
+Function:        init_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 33, Column: 19 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 37, Column: 17 }
+Function:        init_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            zext
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 37, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 37, Column: 17 }
+Function:        init_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 37, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 37, Column: 17 }
+Function:        init_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 37, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 38, Column: 17 }
+Function:        init_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 38, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 34, Column: 17 }
+Function:        init_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            zext
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 34, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 34, Column: 17 }
+Function:        init_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 34, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 34, Column: 17 }
+Function:        init_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 34, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 35, Column: 17 }
+Function:        init_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 35, Column: 17 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 40, Column: 13 }
+Function:        init_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            zext
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 40, Column: 13 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 40, Column: 13 }
+Function:        init_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            mul
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 40, Column: 13 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 40, Column: 13 }
+Function:        init_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            getelementptr
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 40, Column: 13 }
+...
+--- !Passed
+Pass:            licm
+Name:            Hoisted
+DebugLoc:        { File: 'src/matrix_utils.c', Line: 32, Column: 27 }
+Function:        init_matrices
+Args:
+  - String:          'hoisting '
+  - Inst:            icmp
+    DebugLoc:        { File: 'src/matrix_utils.c', Line: 32, Column: 27 }
+...
